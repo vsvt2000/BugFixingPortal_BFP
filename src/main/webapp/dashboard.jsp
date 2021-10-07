@@ -30,7 +30,7 @@
                         <div class="dropdown-content">
                           <a href="aboutus.html">About Us</a>
                           <a href="viewprofile.jsp">View My Profile</a>
-                          <a href="feedback.html">Feedback</a>
+                          <a href="feedback.jsp">Feedback</a>
                           <a href="sp_page.html">Upgrade to SP</a>
                           <a href="myissues.html">Issues Page</a>
                           <a href="myanswers.html">Responses</a>
