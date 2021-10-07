@@ -1,1 +1,2 @@
-# BugFixingPortal_BFP
+# BugFixingPortal
+7th sem NCP project
