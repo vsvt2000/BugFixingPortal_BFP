@@ -29,7 +29,7 @@
                         <button class="dropbtn"><img class="img1" src="images/logo.png" alt="logo"></button>
                         <div class="dropdown-content">
                           <a href="aboutus.html">About Us</a>
-                          <a href="viewprofile.jsp">View My Profile</a>
+                          <a href="Viewprofile">View My Profile</a>
                           <a href="feedback.jsp">Feedback</a>
                           <a href="sp_page.html">Upgrade to SP</a>
                           <a href="myissues.html">Issues Page</a>
@@ -64,7 +64,18 @@
 		%>
         
         </div>
+		<script>
+  	function getvals(){
+  		var sPageURL = window.location.search.substring(1);
+  		var ans=sPageURL.split('=')
+  		console.log(ans[1])
+  		if (ans.length>0){
 
+  			document.getElementById("msg").innerHTML=ans[1].replace(/%20/g,' ')
+  		}
+  	}
+  	</script> 
+	<p id="msg"><script>getvals()</script></p>
         <div class="container">
             <div class="query col-offset-2 col-md-6">
                 <!-- button -->

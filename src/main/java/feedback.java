@@ -10,52 +10,57 @@ public class feedback extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-//        PrintWriter out = response.getWriter();
-//
-//        Connection conn=null;
-//        
-//        try{
-//        	String uname = (String)request.getParameter("uname");
-//            String pass = (String)request.getParameter("psw");
-//            String name = (String)request.getParameter("name");
-//            Class.forName("com.mysql.jdbc.Driver");
-//            conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
-//             
-//            if (conn!=null){
-//                try{
-//                	
-//                PreparedStatement ps= conn.prepareStatement("insert into user_details(username,name,password) values(?,?,?)");
-//                
-//                ps.setString(1,uname);
-//                ps.setString(2,name);
-//                ps.setString(3,pass);
-//                int x = ps.executeUpdate();
-//                out.print("in");
-//                if(x>0){
-//                    //out.print("registered successfully");
-//                    
-//                        
-//                            String msg="Registration success";
-//                            //String redirectURL = "hlogin.html";
-//                            response.sendRedirect("login.html?msg="+msg);
-//                        
-//                    }
-//                    
-//                
-//                else{
-//                    //out.print("registration failed .Acc already exists!:(((( ");
-//                    String msg="registration failed .Acc already exists!:(((( ";
-//                    String redirectURL = "http://localhost:8080/BFP/?msg="+msg;
-//                    response.sendRedirect(redirectURL);
-//                }
-//                }catch(Exception e){
-//                    String msg="registration failed .Acc already exists with error!:(((( "+e+name+uname+pass;
-//                    String redirectURL = "http://localhost:8080/BFP/?msg="+msg;
-//                    response.sendRedirect(redirectURL);
-//                }
-//            }
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
-    	response.sendRedirect("dashboard.jsp");
+        PrintWriter out = response.getWriter();
+
+        Connection conn=null;
+        HttpSession session=request.getSession(false); 
+       try{
+        	  String uname = (String)session.getAttribute("user");
+              int rating=-1;
+              //out.print((String)request.getAttribute("feedback1"));
+              String desc = (String)request.getParameter("comments");
+              Class.forName("com.mysql.jdbc.Driver");
+              conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
+              for (int i=0;i<5;i++) {
+            	  String temp=(String)request.getParameter(Integer.toString(i));
+            	  if(temp!=null && rating==-1) {
+            		  rating =i+1;
+            	  }
+              }
+           if (conn!=null){
+              try{               	
+               PreparedStatement ps= conn.prepareStatement("insert into feedback values(?,?,?)");
+                
+               ps.setString(1,uname);
+                ps.setInt(2,rating);
+                ps.setString(3,desc);
+                int x = ps.executeUpdate();
+                out.print("in");
+                if(x>0){
+                   //out.print("registered successfully");
+                    
+                       
+                           String msg="success";
+                           //String redirectURL = "hlogin.html";
+                           response.sendRedirect("dashboard.jsp?msg="+msg);
+                       
+                   }
+                    
+                
+               else{
+                   //out.print("registration failed .Acc already exists!:(((( ");
+            	   String msg="failed";
+                   //String redirectURL = "hlogin.html";
+                   response.sendRedirect("dashboard.jsp?msg="+msg);
+                }
+                }catch(Exception e){
+                	String msg="error";
+                    //String redirectURL = "hlogin.html";
+                    response.sendRedirect("dashboard.jsp?msg="+msg);
+                }
+            }
+       }catch(Exception e){
+            e.printStackTrace();
+       }
+ 
         }}

@@ -31,5 +31,13 @@
         <servlet-name>feedback</servlet-name>
         <url-pattern>/feedback</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Viewprofile</servlet-name>
+        <servlet-class>Viewprofile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Viewprofile</servlet-name>
+        <url-pattern>/Viewprofile</url-pattern>
+    </servlet-mapping>
     
 </web-app>

@@ -37,45 +37,53 @@
 
         </nav>
         </div>
+        <div style="background-color:red">
+        <%
+		session = request.getSession();
+		out.println("<h1 style='font-size:25px'>"+(String)session.getAttribute("user")+"</h1>");
+		
+		%>
+        
+        </div>
         
     <div class="app">
         <h1 style="text-align: center; margin-top: 50px;">Was this forum helpful?</h1>
         <p style="text-align: center;">Let us know how we did</p>
-      <form action="feedback">
+      <form action="feedback" method="post">
      
      
         <div class="container">
           <div class="item">
             <label for="0">
-            <input class="radio" type="radio" name="feedback" id="0" value="0">
+            <input class="radio" type="radio" name="0" id="0" value="0">
             <span>&#128512</span>
           </label>
           </div>
       
           <div class="item">
             <label for="1">
-            <input class="radio" type="radio" name="feedback" id="1" value="1">
+            <input class="radio" type="radio" name="1" id="1" value="1">
             <span>&#128512;</span>
           </label>
           </div>
       
           <div class="item">
             <label for="2">
-            <input class="radio" type="radio" name="feedback" id="2" value="2">
+            <input class="radio" type="radio" name="2" id="2" value="2">
             <span>&#128512;</span>
           </label>
           </div>
       
           <div class="item">
             <label for="3">
-            <input class="radio" type="radio" name="feedback" id="3" value="3">
+            <input class="radio" type="radio" name="3" id="3" value="3">
             <span>🙂</span>
           </label>
           </div>
       
           <div class="item">
             <label for="4">
-            <input class="radio" type="radio" name="feedback" id="4" value="4">
+            <input class="radio" type="radio" name="4" id="4" value="4">
             <span>🙂</span>
           </label>
           </div>
@@ -88,7 +96,7 @@
         <br>
         <textarea  name="comments" rows="4" cols="50"  style="margin-left: 36.5%;"></textarea>
         <br>
-        <a href="dashboard.jsp">  <button type="button" class="btn btn-primary offset-md-5"  style="margin-left: 45%;">Submit Feedback</button> </a>
+        <button type="submit" class="btn btn-primary offset-md-5"  style="margin-left: 45%;">Submit Feedback</button>
        
       </form>
       </div>
