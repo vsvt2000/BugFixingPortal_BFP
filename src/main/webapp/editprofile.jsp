@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@page import="java.sql.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,9 +56,32 @@
 
     <div class="card">
         <img src="images/profilephoto.jpg" alt="John" style="width:100%">
-        <h1>Harry Forbes</h1>
-        <p class="title">Student, CSE</p>
-        <p>Stanford University</p>
+        <%
+        Connection conn=null;
+        session=request.getSession();
+        try{
+        	Class.forName("com.mysql.jdbc.Driver");
+      	  	conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
+      	  	String uname =(String)session.getAttribute("user");
+        	
+        	String y1="";
+        	
+        	 if (conn!=null){
+       		  PreparedStatement ps= conn.prepareStatement("select name from user_details where username=?");
+
+       		  ps.setString(1,uname);
+       		  ResultSet x = ps.executeQuery();
+       		  while(x.next()){
+       			  y1=x.getString("name");
+       		  }
+       			out.print("<h1>"+y1+"</h1>");
+        	 }
+        }catch(Exception e){
+        	out.print("<h1>null</h1>");
+        }
+        %>
+        
+        <p class="title">Student</p>
         <div class="profile">
             <input type="file" name="uploadfile" id="img" style="display:none;" />
             <label for="img">Change Profile Photo</label>
@@ -67,7 +93,9 @@
     <div class="card1 col-md-8 offset-3">
 
         <label for="test" class="new"><b>Username</b> </label>
-        <span><input name="username" id="username" type="text" readonly /></span>
+        <% session = request.getSession();
+        out.print("<span><input name='username' id='username' type='text' value='"+(String)session.getAttribute("user")+"' readonly /></span>"); %>
+        
         <br>
         <label for="test" class="new"><b>Old Password</b> </label>
         <span><input name="old_password" id="old_password" type="password" /></span>

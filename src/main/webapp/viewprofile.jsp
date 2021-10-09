@@ -45,7 +45,7 @@
     </div>
     
     <!-- <button type="button" class="btn btn-secondary update">Update Profile</button> -->
-    <a href="editprofile.html"> <button type="button" class="btn btn-secondary update">Update Profile</button> </a>
+    <a href="editprofile.jsp"><button type="button" class="btn btn-secondary update">Update Profile</button> </a>
     <%
   Connection conn=null;
   

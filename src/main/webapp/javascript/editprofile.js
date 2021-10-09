@@ -95,7 +95,7 @@ function onFocus () {
       ctr -= 1;
     }
 
-    if (ctr == 5 || ctr==0 ) {
+    if (ctr == 5 || myInput.length==0) {
         button.disabled = false;
     }
 
@@ -122,7 +122,7 @@ function onFocus () {
       ctr -= 1;
     }
 
-    if (ctr == 1 ) {
+    if (ctr == 1 || (psw.length==0 && cpsw.length==0) ) {
       button.disabled = false;
   }
 

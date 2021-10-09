@@ -93,6 +93,8 @@ public class Editprofile extends HttpServlet {
                         }
                 }
                 
+                response.sendRedirect("Viewprofile");
+                
                 
                 
                 }catch(Exception e){

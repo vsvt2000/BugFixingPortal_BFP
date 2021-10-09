@@ -35,9 +35,11 @@ public class Register extends HttpServlet {
                     //out.print("registered successfully");
                     
                         
-                            String msg="Registration success";
+                            //String msg="Registration success";
                             //String redirectURL = "hlogin.html";
-                            response.sendRedirect("login.html?msg="+msg);
+                	HttpSession log = request.getSession();
+                    log.setAttribute("user", uname);
+                            response.sendRedirect("editprofile.jsp");
                         
                     }
                     
