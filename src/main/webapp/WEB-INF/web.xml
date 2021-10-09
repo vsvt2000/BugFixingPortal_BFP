@@ -40,4 +40,13 @@
         <url-pattern>/Viewprofile</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>Editprofile</servlet-name>
+        <servlet-class>Editprofile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Editprofile</servlet-name>
+        <url-pattern>/Editprofile</url-pattern>
+    </servlet-mapping>
+    
 </web-app>
