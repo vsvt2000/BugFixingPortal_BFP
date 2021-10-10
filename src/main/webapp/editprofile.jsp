@@ -118,20 +118,75 @@
         <span><input name="emailid" id="emailid" type="email" /></span>
         <br>
         <label for="test" class="new"><b>Date of Birth</b> </label>
-        <span><input name="dob" id="dob" type="date" /></span>
+        <% try{
+        	Class.forName("com.mysql.jdbc.Driver");
+      	  	conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
+      	  	String uname =(String)session.getAttribute("user");
+        	
+        	String y1="";
+        	
+        	 if (conn!=null){
+       		  PreparedStatement ps= conn.prepareStatement("select date_of_birth from user_details where username=?");
+
+       		  ps.setString(1,uname);
+       		  ResultSet x = ps.executeQuery();
+       		  while(x.next()){
+       			  y1=x.getString("date_of_birth");
+       		  }
+       		  	if(y1.equals("01/01/1900")){
+       		  		out.print("<span><input name='dob' id='dob' type='date' /></span>");
+       		  	}
+       		  	else{
+       		  		out.print("<span><input name='dob' id='dob'value='"+y1+"' type='text' readonly/></span>");
+
+       		  	}
+        	 }
+        }catch(Exception e){
+        	out.print("<h1>null</h1>");
+        } %>
+        
+        
         <br>
         
         <label for="test" class="new"><b>Interests</b> </label>
         <div class="row">
             <div class="col-lg-12">
+            <%
+            
+            try{
+            	Class.forName("com.mysql.jdbc.Driver");
+          	  	conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
+          	  	String uname =(String)session.getAttribute("user");
+            	
+            	String y1="";
+            	
+            	 if (conn!=null){
+           		  PreparedStatement ps= conn.prepareStatement("select interests from user_details where username=?");
+
+           		  ps.setString(1,uname);
+           		  ResultSet x = ps.executeQuery();
+           		  while(x.next()){
+           			  y1=x.getString("interests");
+           		  }
+           		  	String[] arr=y1.split(",");
+           			for(int i=0;i<arr.length;i++){
+                    out.print("<div id='inputFormRow'> <div class='input-group mb-3'> <input type='text' name='title[]' id='title[]' class='form-control m-input' value='"+arr[i]+"' autocomplete='off'> <div class='input-group-append'> <button id='removeRow' type='button' class='btn btn-danger'>Remove</button> </div> </div> </div>");
+                    }
+            	 }
+            }catch(Exception e){
+            	out.print("<h1>null</h1>");
+            }
+            
+                 %>
+                
                 <div id="inputFormRow">
-                    <div class="input-group mb-3">
-                        <input type="text" name="title[]" id="title[]" class="form-control m-input" placeholder="Enter title" autocomplete="off">
-                        <div class="input-group-append">                
-                            <button id="removeRow" type="button" class="btn btn-danger">Remove</button>
-                        </div>
+                <div class="input-group mb-3">
+                    <input type="text" name="title[]" id="title[]" class="form-control m-input" placeholder="Enter title" autocomplete="off">
+                    <div class="input-group-append">                
+                        <button id="removeRow" type="button" class="btn btn-danger">Remove</button>
                     </div>
                 </div>
+            </div>
     
                 <div id="newRow"></div>
                 <button id="addRow" type="button" class="btn btn-info">Add Row</button>
