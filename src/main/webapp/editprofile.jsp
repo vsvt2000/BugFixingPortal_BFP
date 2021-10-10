@@ -82,10 +82,7 @@
         %>
         
         <p class="title">Student</p>
-        <div class="profile">
-            <input type="file" name="uploadfile" id="img"  />
-            <label for="img">Change Profile Photo</label>
-        </div>
+        
 
     </div>
 

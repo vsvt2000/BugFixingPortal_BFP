@@ -119,7 +119,7 @@ public class Editprofile extends HttpServlet {
                 }
                 	
                                 
-                //response.sendRedirect("Viewprofile");
+                response.sendRedirect("Viewprofile");
                 
                 
                 
