@@ -126,7 +126,7 @@
             <div class="col-lg-12">
                 <div id="inputFormRow">
                     <div class="input-group mb-3">
-                        <input type="text" name="title[]" class="form-control m-input" placeholder="Enter title" autocomplete="off">
+                        <input type="text" name="title[]" id="title[]" class="form-control m-input" placeholder="Enter title" autocomplete="off">
                         <div class="input-group-append">                
                             <button id="removeRow" type="button" class="btn btn-danger">Remove</button>
                         </div>

@@ -24,13 +24,21 @@ public class Editprofile extends HttpServlet {
             String confirmpass = (String)request.getParameter("confirm_password");
             String dob = (String)request.getParameter("dob");
             String email = (String)request.getParameter("emailid");
-            String[] interest = (String[])request.getParameterValues("title");
-            Part part=request.getPart("uploadfile");
+            String[] interest = (String[])request.getParameterValues("title[]");
+            //Part part=request.getPart("uploadfile");
     		//String filename=part.getSubmittedFileName();
     		//out.println(filename);
-            
+            out.print("interests:"+interest.length);
             out.print("d"+dob+" e"+email+" O"+oldpass);
-
+            String interestfinal="";
+            int i;
+            for(i=0;i<interest.length-1;i++)
+            {
+            	interestfinal=interestfinal+(String)interest[i]+",";
+            }
+            interestfinal=interestfinal+(String)interest[i];
+            
+            out.println(interestfinal);
 
             Class.forName("com.mysql.jdbc.Driver");
             conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
@@ -100,18 +108,20 @@ public class Editprofile extends HttpServlet {
                         }
                 }
                 
-                if(part!=null){
-                	InputStream inputStream= part.getInputStream();
-                	PreparedStatement ps= conn.prepareStatement("update user_details set picsource=? where username=?");
-                	ps.setBlob(1,inputStream);
+                
+                
+                if(interestfinal.length()>0){
+                	//InputStream inputStream= part.getInputStream();
+                	PreparedStatement ps= conn.prepareStatement("update user_details set interests=? where username=?");
+                	ps.setString(1,interestfinal);
                 	ps.setString(2,(String)session.getAttribute("user"));
                 	int x = ps.executeUpdate();
                     out.print("in");
                     if(x>0){
-                        //out.print("registered successfully");
-                        
+                        out.print("interest");
+                         
                             
-                                msg=msg+"img";
+                                //msg=msg+"img";
                                 //String redirectURL = "hlogin.html";
 //                                response.sendRedirect("login.html?msg="+msg);
                             
@@ -119,7 +129,7 @@ public class Editprofile extends HttpServlet {
                 }
                 	
                                 
-                response.sendRedirect("Viewprofile");
+               // response.sendRedirect("Viewprofile");
                 
                 
                 
