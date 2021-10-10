@@ -2,11 +2,14 @@ import javax.servlet.http.*;
 import java.sql.*;
 import javax.servlet.ServletException;
 import java.io.*;
-
+import javax.servlet.annotation.*;
 
 //@WebServlet("/Register")
+@MultipartConfig
 public class Editprofile extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    
+    
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
@@ -22,6 +25,10 @@ public class Editprofile extends HttpServlet {
             String dob = (String)request.getParameter("dob");
             String email = (String)request.getParameter("emailid");
             String[] interest = (String[])request.getParameterValues("title");
+            Part part=request.getPart("uploadfile");
+    		//String filename=part.getSubmittedFileName();
+    		//out.println(filename);
+            
             out.print("d"+dob+" e"+email+" O"+oldpass);
 
 
@@ -93,7 +100,26 @@ public class Editprofile extends HttpServlet {
                         }
                 }
                 
-                response.sendRedirect("Viewprofile");
+                if(part!=null){
+                	InputStream inputStream= part.getInputStream();
+                	PreparedStatement ps= conn.prepareStatement("update user_details set picsource=? where username=?");
+                	ps.setBlob(1,inputStream);
+                	ps.setString(2,(String)session.getAttribute("user"));
+                	int x = ps.executeUpdate();
+                    out.print("in");
+                    if(x>0){
+                        //out.print("registered successfully");
+                        
+                            
+                                msg=msg+"img";
+                                //String redirectURL = "hlogin.html";
+//                                response.sendRedirect("login.html?msg="+msg);
+                            
+                        }
+                }
+                	
+                                
+                //response.sendRedirect("Viewprofile");
                 
                 
                 

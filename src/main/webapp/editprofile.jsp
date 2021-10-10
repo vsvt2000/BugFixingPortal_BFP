@@ -52,7 +52,7 @@
         </nav>
 
     </div>
-<form action="Editprofile" method="post">
+<form action="Editprofile" method="post" enctype="multipart/form-data">
 
     <div class="card">
         <img src="images/profilephoto.jpg" alt="John" style="width:100%">
@@ -83,7 +83,7 @@
         
         <p class="title">Student</p>
         <div class="profile">
-            <input type="file" name="uploadfile" id="img" style="display:none;" />
+            <input type="file" name="uploadfile" id="img"  />
             <label for="img">Change Profile Photo</label>
         </div>
 
