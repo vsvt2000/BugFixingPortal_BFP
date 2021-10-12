@@ -15,7 +15,7 @@
         <script src="javascript/common.js"></script>
 </head>
 <body>
-<form  method="post">
+
     <div class="float-container">
       <div class="header1 row" style="margin:0px 0px 0px 0px">
         <nav class="navbar navbar-dark bg-black navbar-brand">
@@ -47,26 +47,28 @@
         </nav>
 
     </div>
-  
+<form  method="post" action="RaiseIssue">  
     <div class="container" style="position: relative; padding-top: 4%;">
         <div class="new">
         <h2><strong>RAISE A TICKET</strong></h2>
         <br>
         <label for="problem">Problem</label>
-      <input type="text" placeholder="Problem" name="problem" required>
+      <input type="text" placeholder="Problem" name="problem" id="problem" required>
       <label for="probdomain">Problem Domain</label>
-      <input type="text" placeholder="Problem Domain(s)" name="probdomain" required>
+      <input type="text" placeholder="Problem Domain(s)" id="probdomain" name="probdomain" required>
       <label for="probdesc">Problem Description</label>
       <br>
       <br>
       <textarea style="font-size: 13pt; " rows="10" cols="106" placeholder="Problem Description" name="probdesc" required ></textarea>
-
-      <br>
-      <br>
+	  <br><br>
+	  Ticket Type
+	  <br>
+	  <input type="radio" id="normal" name="ticktype" value="normal" style="margin-top:15px">
+	  <label for="normal">Normal</label>
+      <input type="radio" id="direct" name="ticktype" value="direct" style="margin-left:100px">
+      <label for="direct">Direct</label><br>
+      <br><br>
       <button type="submit" style="background-color:rgb(59, 59, 184)">Raise Ticket</button>
-      <br>
-      <br>
-      <button type="submit" style="background-color:rgb(59, 59, 184)">Raise Direct Ticket</button>
 
     </div>
     </div>

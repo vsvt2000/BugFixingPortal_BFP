@@ -49,4 +49,21 @@
         <url-pattern>/Editprofile</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>RaiseIssue</servlet-name>
+        <servlet-class>RaiseIssue</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RaiseIssue</servlet-name>
+        <url-pattern>/RaiseIssue</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>SPRegistration</servlet-name>
+        <servlet-class>SPRegistration</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SPRegistration</servlet-name>
+        <url-pattern>/SPRegistration</url-pattern>
+    </servlet-mapping>
 </web-app>
