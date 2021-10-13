@@ -74,7 +74,8 @@
           <label for="uname">Username</label>
           <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
           <label for="psw">Password</label>
-          <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+          <input type="password" placeholder="Enter Password" name="psw" id="psw" onfocus="onFocus()" onblur="onBlur()" onkeyup="onKeyUp()" required>
+          
           <div id="message" style="display:none; background-color: rgb(128,128,128,0.5); padding: 25px;" >
             <h3>Password must contain the following:</h3>
             <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
@@ -83,7 +84,8 @@
             <p id="length" class="invalid">Minimum <b>8 characters</b></p>
           </div>
           <label for="psw">Re-enter Password</label>
-          <input type="password" placeholder="Re-Enter Password" name="psw1" id="psw1" required>
+          <input type="password" placeholder="Re-Enter Password" name="psw1" id="psw1" onfocus="onFocusCPs()" onblur="onBlurCPs()" onkeyup="onKeyUpCPs()" required>
+        
           <div id="message2" style="display:none; background-color: rgb(128,128,128,0.5); padding: 25px;" >
             <p id="match" class="invalid"><b>Passwords must match</b></p>
           </div>
