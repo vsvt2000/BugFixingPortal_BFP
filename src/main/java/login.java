@@ -55,7 +55,7 @@ public class login extends HttpServlet {
                 else{
                     //out.print("registration failed .Acc already exists!:(((( ");
                     String msg="login failed . Invalid Credentials";
-                    response.sendRedirect("login.html?msg="+msg);
+                    response.sendRedirect("login.jsp?msg="+msg);
                 }
                 }catch(Exception e){
 //                    String msg="registration failed .Acc already exists with error!:(((( "+e+name+uname+pass;

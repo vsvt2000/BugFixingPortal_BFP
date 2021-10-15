@@ -58,8 +58,8 @@ public class Editprofile extends HttpServlet {
                         
                             
                                 msg=msg+"password";
-                                //String redirectURL = "hlogin.html";
-//                                response.sendRedirect("login.html?msg="+msg);
+                                //String redirectURL = "hlogin.jsp";
+//                                response.sendRedirect("login.jsp?msg="+msg);
                             
                         }
                         
@@ -85,8 +85,8 @@ public class Editprofile extends HttpServlet {
                         
                             
                                 msg=msg+" email";
-                                //String redirectURL = "hlogin.html";
-//                                response.sendRedirect("login.html?msg="+msg);
+                                //String redirectURL = "hlogin.jsp";
+//                                response.sendRedirect("login.jsp?msg="+msg);
                             
                         }
                 }
@@ -102,8 +102,8 @@ public class Editprofile extends HttpServlet {
                         
                             
                                 msg=msg+" dob";
-                                //String redirectURL = "hlogin.html";
-//                                response.sendRedirect("login.html?msg="+msg);
+                                //String redirectURL = "hlogin.jsp";
+//                                response.sendRedirect("login.jsp?msg="+msg);
                             
                         }
                 }
@@ -122,8 +122,8 @@ public class Editprofile extends HttpServlet {
                          
                             
                                 //msg=msg+"img";
-                                //String redirectURL = "hlogin.html";
-//                                response.sendRedirect("login.html?msg="+msg);
+                                //String redirectURL = "hlogin.jsp";
+//                                response.sendRedirect("login.jsp?msg="+msg);
                             
                         }
                 }

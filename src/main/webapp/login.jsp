@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
 <html>
 <head>
   <meta charset="UTF-8">
@@ -43,7 +46,7 @@
           </label>
           <br>
           <br>
-          <a href="signup.html" style="color:rgb(57, 57, 107);text-align:center;" ><span > <b>Don't have an account ?</b> </span></a>
+          <a href="signup.jsp" style="color:rgb(57, 57, 107);text-align:center;" ><span > <b>Don't have an account ?</b> </span></a>
         </div>
       </div>
     

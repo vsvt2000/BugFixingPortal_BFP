@@ -41,7 +41,7 @@ public class feedback extends HttpServlet {
                     
                        
                            String msg="success";
-                           //String redirectURL = "hlogin.html";
+                           //String redirectURL = "hlogin.jsp";
                            response.sendRedirect("dashboard.jsp?msg="+msg);
                        
                    }
@@ -50,12 +50,12 @@ public class feedback extends HttpServlet {
                else{
                    //out.print("registration failed .Acc already exists!:(((( ");
             	   String msg="failed";
-                   //String redirectURL = "hlogin.html";
+                   //String redirectURL = "hlogin.jsp";
                    response.sendRedirect("dashboard.jsp?msg="+msg);
                 }
                 }catch(Exception e){
                 	String msg="error";
-                    //String redirectURL = "hlogin.html";
+                    //String redirectURL = "hlogin.jsp";
                     response.sendRedirect("dashboard.jsp?msg="+msg);
                 }
             }

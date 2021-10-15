@@ -91,7 +91,7 @@
           </div>
     	
         
-          <a href="sp_page.html"> <button type="submit" style="background-color:rgb(59, 59, 184)" name="regbtn">Send Request</button> </a>
+          <a href="sp_page.jsp"> <button type="submit" style="background-color:rgb(59, 59, 184)" name="regbtn">Send Request</button> </a>
       </form>
           <!-- <button type="submit" style="background-color:rgb(59, 59, 184)">Send Request</button> -->
           

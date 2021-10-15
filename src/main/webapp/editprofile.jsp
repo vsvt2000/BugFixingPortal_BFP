@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="java.sql.*" %>
+<% 
+response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+if(session.getAttribute("user")==null)
+	response.sendRedirect("login.jsp");
+%>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html lang="en">
 

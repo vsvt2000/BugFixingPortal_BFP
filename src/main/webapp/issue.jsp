@@ -1,3 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<% 
+response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+if(session.getAttribute("user")==null)
+	response.sendRedirect("login.jsp");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,20 +30,8 @@
       <div class="header1 row">
         <nav class="navbar navbar-dark bg-black navbar-brand">
             <div class="logo col-md-2 ">
-                
-                <div class="dropdown">
-                    <button class="dropbtn"><img class="img1" src="images/logo.png" alt="logo"></button>
-                    <div class="dropdown-content">
-                      <a href="aboutus.html">About Us</a>
-                      <a href="viewprofile.html">View My Profile</a>
-                      <a href="feedback.html">Feedback</a>
-                      <a href="sp_page.html">Upgrade to SP</a>
-                      <a href="myissues.html">Issues Page</a>
-                      <a href="myanswers.html">Responses</a>
-                      <a href="login.html">Logout</a>
-
-                    </div>
-                  </div>
+                <button class="dropbtn"><img class="img1" src="images/logo.png" alt="logo"></button>
+               
             </div>
             <div class="slogan col-md-6 justify-content-center">
                 <h1
@@ -45,7 +41,7 @@
 
             </div>
             <div class="icon col-md-2 ">
-                <img class="img2" src="images/profile.png" alt="profile">
+                <a href="dashboard.jsp"><img class="img2" src="images/profile.png" alt="profile"></a>
 
             </div>
 

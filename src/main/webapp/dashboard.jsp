@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<% 
+response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+if(session.getAttribute("user")==null)
+	response.sendRedirect("login.jsp");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,13 +34,13 @@
                     <div class="dropdown">
                         <button class="dropbtn"><img class="img1" src="images/logo.png" alt="logo"></button>
                         <div class="dropdown-content">
-                          <a href="aboutus.html">About Us</a>
-                          <a href="Viewprofile">View My Profile</a>
+                          <a href="aboutus.jsp">About Us</a>
+                          <a href="viewprofile.jsp">View My Profile</a>
                           <a href="feedback.jsp">Feedback</a>
                           <a href="sp_page.jsp">Upgrade to SP</a>
                           <a href="myissues.jsp">Issues Page</a>
-                          <a href="myanswers.html">Responses</a>
-                          <a href="login.html">Logout</a>
+                          <a href="myanswers.jsp">Responses</a>
+                          <a href="logout">Logout</a>
 
                         </div>
                         
@@ -79,7 +85,7 @@
         <div class="container">
             <div class="query col-offset-2 col-md-6">
                 <!-- button -->
-                <a href="raise_issue.html"> <button type="button" onmouseenter="highlightBtn(this)" onmouseleave="highlightBtn(this)">Raise a ticket</button> </a>
+                <a href="raise_issue.jsp"> <button type="button" onmouseenter="highlightBtn(this)" onmouseleave="highlightBtn(this)">Raise a ticket</button> </a>
                 <!-- <button type="button">Raise a ticket</button> -->
             </div>
             <br>
@@ -90,7 +96,7 @@
 
                     <form class="example col-offset-2">
                         <input type="text" placeholder="Search.." name="search" />
-                       <a href="search_result.html" ><button type="button" style="padding-bottom: 10px"><i class="fa fa-search"></i></button></a>
+                       <a href="search_result.jsp" ><button type="button" style="padding-bottom: 10px"><i class="fa fa-search"></i></button></a>
 
                     </form>
 

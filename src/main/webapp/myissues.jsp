@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
+<% 
+response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+if(session.getAttribute("user")==null)
+	response.sendRedirect("login.jsp");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,7 +79,7 @@
                 <tbody>
                     <tr>
                         <td>Html</td>
-                        <td><a href="issue.html">Html div size not changing</a></td>
+                        <td><a href="issue.jsp">Html div size not changing</a></td>
                         <td>10</td>
                         <td>Active</td>
                         <td><button type="button" class="btn btn-primary" style="height: 75%;">Close issue</button></td>
