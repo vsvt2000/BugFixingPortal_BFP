@@ -5,7 +5,7 @@ response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
 if(session.getAttribute("user")==null)
 	response.sendRedirect("login.jsp");
 %>
-
+<%@ page import="java.sql.*" %>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -64,9 +64,44 @@ if(session.getAttribute("user")==null)
 	  <br>
 	  <input type="radio" id="normal" name="ticktype" value="normal" style="margin-top:15px">
 	  <label for="normal">Normal</label>
-      <input type="radio" id="direct" name="ticktype" value="direct" style="margin-left:100px">
-      <label for="direct">Direct</label><br>
-      <br><br>
+	  <br> 
+      <br>
+	  <%try{
+	      	Class.forName("com.mysql.jdbc.Driver");
+	    	Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
+	    	String uname =(String)session.getAttribute("user");
+	      	
+	      	//int y1=0;
+	      	//out.print(request.getRequestURL().toString());
+	      	//y1=Integer.parseInt(request.getParameter("issue"));
+	      	
+	      	 if (conn!=null){
+	      		//out.print("<p>"+y1"</p>");
+	     		  PreparedStatement ps= conn.prepareStatement("select points from user_details where username=?");
+
+	     		  ps.setString(1,uname);
+	     		  ResultSet x = ps.executeQuery();
+	     		 //out.print("<p>executed</p>");
+				 int y6=0;
+	     		  while(x.next()){
+	     			  y6=x.getInt("points");
+	     			  
+	     		  }
+	     		  
+	     		  if(y6>=3){
+	     			  out.print("<input type='radio' id='direct' name='ticktype' value='direct'><label for ='direct'>Direct</label><br> <br><br>");
+
+	     		  }
+	     		  ;
+	      	 }
+	      	 else{
+	      		out.print("<h1>y1==0</h1>");
+	         }
+	      	 
+	      }catch(Exception e){
+	      	out.print("<h1>null</h1>"+e+"mm");
+	      } %>
+     
       <button type="submit" style="background-color:rgb(59, 59, 184)">Raise Ticket</button>
 
     </div>

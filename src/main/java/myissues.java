@@ -48,7 +48,7 @@ public class myissues extends HttpServlet {
     			  ResultSet x = ps.executeQuery();
     			  //out.print(x);
     			  int y=0;
-    			  String y1="";String y2="";String y3="";String y4="";String y5="";String y6="";
+    			  String y1="";String y2="";String y3="";String y4="";String y5="";int y6=0;
     			  out.print(" <div style=\"text-align:center;\">");
     			  session = request.getSession();
     		        if((String)session.getAttribute("msg")!=null){
@@ -83,7 +83,7 @@ public class myissues extends HttpServlet {
     				  y3=x.getString("description");
     				  y4=x.getString("type");
     				  y5=x.getString("status");
-    				  y6=x.getString("problem_id");
+    				  y6=x.getInt("problem_id");
     				  
     				  
     			

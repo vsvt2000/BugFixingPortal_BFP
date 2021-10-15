@@ -5,7 +5,7 @@ response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
 if(session.getAttribute("user")==null)
 	response.sendRedirect("login.jsp");
 %>
-
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,20 +48,41 @@ if(session.getAttribute("user")==null)
         </nav>
 
     </div>
-        <div class="desc">
-               <h3><b>HTML div size not changing</b></h3>
-               <br>
-               
-               <p>
-                   I am working on a Travel management project and I have a div which holds the comments from users as retrieved from the database, but the div size is not changing according to the number of responses though div css is set to fit content. Can someone help me fix this.
-               </p>
+    
+    <% 
+  	  try{
+      	Class.forName("com.mysql.jdbc.Driver");
+    	Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
+    	  	//String uname =(String)session.getAttribute("user");
+      	
+      	int y1=0;
+      	//out.print(request.getRequestURL().toString());
+      	y1=Integer.parseInt(request.getParameter("issue"));
+      	
+      	 if (conn!=null && y1!=0){
+      		//out.print("<p>"+y1"</p>");
+     		  PreparedStatement ps= conn.prepareStatement("select * from issues where problem_id=?");
 
-               <br>
-            
-              
-
-
-        </div>
+     		  ps.setInt(1,y1);
+     		  ResultSet x = ps.executeQuery();
+     		 //out.print("<p>executed</p>");
+			  String y2="";String y3="";String y4="";String y5="";int y6=0;
+     		  while(x.next()){
+     			  y2=x.getString("prob");
+     			  y3=x.getString("Description");
+     		  }
+     			out.print("<div class='desc'> <h3><b>"+y2+"</b></h3> <br> <p>" +y3+" </p> <br>");
+      	 }
+      	 else{
+      		out.print("<h1>y1==0</h1>");
+         }
+      	 
+      }catch(Exception e){
+      	out.print("<h1>null</h1>"+e+"mm");
+      }
+  		%>
+    
+        
         <div class="comments">
         <b> Comments:</b>
         <div class="dialogbox">
