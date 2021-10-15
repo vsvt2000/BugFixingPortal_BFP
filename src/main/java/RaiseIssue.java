@@ -41,7 +41,7 @@ public class RaiseIssue extends HttpServlet {
             ps.setString(5,type);
             int x = ps.executeUpdate();
             
-            response.sendRedirect("myissues.jsp");
+            response.sendRedirect("myissues");
             session.setAttribute("msg","1");
 		}
 		

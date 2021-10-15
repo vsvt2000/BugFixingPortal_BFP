@@ -75,4 +75,12 @@
         <servlet-name>logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>myissues</servlet-name>
+        <servlet-class>myissues</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>myissues</servlet-name>
+        <url-pattern>/myissues</url-pattern>
+    </servlet-mapping>
 </web-app>
