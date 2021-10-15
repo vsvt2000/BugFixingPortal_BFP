@@ -48,7 +48,7 @@ public class myissues extends HttpServlet {
     			  ResultSet x = ps.executeQuery();
     			  //out.print(x);
     			  int y=0;
-    			  String y1="";String y2="";String y3="";String y4="";String y5="";
+    			  String y1="";String y2="";String y3="";String y4="";String y5="";String y6="";
     			  out.print(" <div style=\"text-align:center;\">");
     			  session = request.getSession();
     		        if((String)session.getAttribute("msg")!=null){
@@ -83,6 +83,7 @@ public class myissues extends HttpServlet {
     				  y3=x.getString("description");
     				  y4=x.getString("type");
     				  y5=x.getString("status");
+    				  y6=x.getString("problem_id");
     				  
     				  
     			
@@ -94,7 +95,7 @@ public class myissues extends HttpServlet {
     				 out.print("<tbody>\r\n"
     				 		+ "                    <tr>\r\n"
     				 		+ "                        <td>"+  y2  +"</td>\r\n"
-    				 		+ "                        <td><a href=\"issue.jsp\">"+ y1 +"</a></td>\r\n"
+    				 		+ "                        <td><a href=\"issue.jsp?issue="+y6+"\">"+ y1 +"</a></td>\r\n"
     				 		+ "                        <td>10</td>\r\n"
     				 		+ "                        <td>"+ y5 +"</td>\r\n"
     				 		+ "                        <td><button type=\"button\" class=\"btn btn-primary\" style=\"height: 75%;\">Close issue</button></td>\r\n"
