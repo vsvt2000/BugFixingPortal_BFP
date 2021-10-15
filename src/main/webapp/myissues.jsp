@@ -53,9 +53,11 @@
         <div style="text-align:center;">
         <%
         session = request.getSession();
+        if((String)session.getAttribute("msg")!=null){
         if(((String)session.getAttribute("msg")).equals("1")){
         	out.println("Issue Raised Successfully!");
-        	session.removeAtrribute("msg");
+        	session.removeAttribute("msg");
+        }
         }
         %>
         </div>

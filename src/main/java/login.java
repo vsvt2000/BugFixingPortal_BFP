@@ -31,10 +31,11 @@ public class login extends HttpServlet {
                 out.print("in");
                 int y=0;
                 String y1="";
-
+                int y2=0;
                 while(x.next()){
                     y1=x.getString("username");
                     y+=1;
+                    y2=x.getInt("points");
                 }
                 
                 if(y>0){
@@ -43,7 +44,9 @@ public class login extends HttpServlet {
                         
                             HttpSession log = request.getSession();
                             log.setAttribute("user", uname);
-                            
+                            if (y2<2000) {
+                            	log.setAttribute("msg", "0");
+                            }
                             response.sendRedirect("dashboard.jsp");
                         
                     }

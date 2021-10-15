@@ -32,7 +32,7 @@
                           <a href="Viewprofile">View My Profile</a>
                           <a href="feedback.jsp">Feedback</a>
                           <a href="sp_page.jsp">Upgrade to SP</a>
-                          <a href="myissues.html">Issues Page</a>
+                          <a href="myissues.jsp">Issues Page</a>
                           <a href="myanswers.html">Responses</a>
                           <a href="login.html">Logout</a>
 
