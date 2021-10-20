@@ -171,20 +171,48 @@ if(session.getAttribute("user")==null)
                   </div>
                  
                 </div>
+                <%
+                
+                //HttpSession session=request.getSession(false);
+                Connection conn=null;
+                
+                try{
+                	Class.forName("com.mysql.jdbc.Driver");
+                    conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
+                	int issue=Integer.parseInt((String)request.getParameter("issue"));
+                	String y1="";String y2="";
+                	PreparedStatement ps= conn.prepareStatement("SELECT username,response FROM INTERACTION where problem_id=?");
+                	ps.setInt(1,issue);
+               	 	ResultSet x =ps.executeQuery();
+               	 while(x.next()) {
+               		 y1=x.getString("username");
+               		 y2=x.getString("response");
+               		 out.print("<div class='comments'> <div class='dialogbox'> <div class='body'> <span class='tip tip-left'></span> <div class='message'> <b>"+y1+"</b> <br> <span>"+y2+"</span> <br> ");
+               	 	 out.print("<i class='fa fa-thumbs-up'></i> <script> document.querySelector('.fa').addEventListener('click', function(event) { toggleLike(event); }); function toggleLike(ele) { ele.target.classList.toggle('fa-thumbs-down'); } </script></div> </div> </div> </div>");
+               	 }
+
+                }catch(Exception e){
+                }
+                
+                %>
 
                 <div class="comments">
         
                     <div class="dialogbox">
                         <div class="body">
                           <span class="tip tip-left"></span>
-                          <div class="message">
+                          
                             
                             <br>
-                            <textarea id="addcomment" name="w3review" rows="2" cols="48">
-                                add comment....
-                                </textarea>
+                            <form action="IssuePage" method="post" style="display:flex">
+                            <input type="hidden" name="issueval" value="${param.issue}"/>
+                            <textarea id="addcomment" placeholder="add comment...." name="addcomment" style="border:solid 1px orange"; rows="1" cols="48"></textarea>
+                                
+   
+                            <button type="submit" class="btn btn-primary" style="height:100px;width:120px">Comment</button>
+                            </form>
                             <br>
-                        </div>
+                        
                         </div>
                         </div>
                         </div>

@@ -83,4 +83,12 @@
         <servlet-name>myissues</servlet-name>
         <url-pattern>/myissues</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>IssuePage</servlet-name>
+        <servlet-class>IssuePage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IssuePage</servlet-name>
+        <url-pattern>/IssuePage</url-pattern>
+    </servlet-mapping>
 </web-app>
