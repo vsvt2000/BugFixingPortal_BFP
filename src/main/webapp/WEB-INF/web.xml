@@ -91,4 +91,12 @@
         <servlet-name>IssuePage</servlet-name>
         <url-pattern>/IssuePage</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>myanswers</servlet-name>
+        <servlet-class>myanswers</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>myanswers</servlet-name>
+        <url-pattern>/myanswers</url-pattern>
+    </servlet-mapping>
 </web-app>

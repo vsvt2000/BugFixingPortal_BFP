@@ -39,7 +39,7 @@ if(session.getAttribute("user")==null)
                           <a href="feedback.jsp">Feedback</a>
                           <a href="sp_page.jsp">Upgrade to SP</a>
                           <a href="myissues">Issues Page</a>
-                          <a href="myanswers.jsp">Responses</a>
+                          <a href="myanswers">Responses</a>
                           <a href="logout">Logout</a>
 
                         </div>
