@@ -211,11 +211,11 @@ if(session.getAttribute("user")==null)
                              
                             </form>
                             <br>
-                        
-                        </div>
-                        </div>
                         <div>
-                            <button type="submit" class="btn-primary offset-md-3 col-md-3"  >Comment</button></div>
+                            <button style="background:grey" type="submit" class="btn-primary offset-md-9 col-md-3"  >Comment</button></div>
                         </div>
+                        </div>
+                        </div>
+                        
 </body>
 </html>

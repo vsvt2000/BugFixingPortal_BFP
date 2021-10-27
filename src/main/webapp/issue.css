@@ -204,7 +204,7 @@ button {
  .body .message {
     min-height: 30px;
     border-radius: 3px;
-    
+    width: 100%;
     line-height: 1.5;
    
   }
