@@ -21,14 +21,15 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 </head>
 <body>
-<form  method="post" action="login">
-    <div class="float-container">
+
+    <div class="float-container" style="display:flex">
       <div class="imgcontainer">
-        <img src="images/login.jpg" alt="bgimg" style="height:100% ; width:100%" >
+        <img src="images/login.jpg" alt="bgimg" style="height:120% ; width:120%" >
       </div>
   
       <div class="container">
         <div class="new">
+        <form  method="post" action="login">
           <p>LOGIN TO <strong>BUG FIXING PORTAL</strong></p>
           <label for="uname">Username</label>
           <input type="text" placeholder="Enter Username" name="uname" id="uname" required>

@@ -61,38 +61,44 @@ if(session.getAttribute("user")==null)
         <div class="container">
           <div class="item">
             <label for="0">
-            <input class="radio" type="radio" name="0" id="0" value="0">
-            <span>&#128512</span>
+            <input class="radio" type="radio" name="1" id="0" value="0">
+            <span>&#128557;</span>
           </label>
           </div>
-      
+          
+          
           <div class="item">
             <label for="1">
             <input class="radio" type="radio" name="1" id="1" value="1">
-            <span>&#128512;</span>
+            <span>&#128531;</span>
           </label>
           </div>
+      
       
           <div class="item">
             <label for="2">
-            <input class="radio" type="radio" name="2" id="2" value="2">
-            <span>&#128512;</span>
+            <input class="radio" type="radio" name="1" id="2" value="2">
+            <span>&#128528;</span>
           </label>
           </div>
-      
+          
           <div class="item">
             <label for="3">
-            <input class="radio" type="radio" name="3" id="3" value="3">
-            <span>🙂</span>
+            <input class="radio" type="radio" name="1" id="3" value="3">
+            <span>&#128522;</span>
           </label>
           </div>
       
-          <div class="item">
+      <div class="item">
             <label for="4">
-            <input class="radio" type="radio" name="4" id="4" value="4">
-            <span>🙂</span>
+            <input class="radio" type="radio" name="1" id="4" value="4">
+            <span>&#128525;</span>
           </label>
           </div>
+      
+          
+      
+          
       
         </div>
       </div>
@@ -100,7 +106,7 @@ if(session.getAttribute("user")==null)
       <div >
         <h3 style="text-align: center;">How can we improve?</h3>
         <br>
-        <textarea  name="comments" rows="4" cols="50"  style="margin-left: 36.5%;"></textarea>
+        <textarea  name="comments" rows="4" cols="50"  class="form-control z-depth-1 offset-md-3" style="width:50%"></textarea>
         <br>
         <button type="submit" class="btn btn-primary offset-md-5"  style="margin-left: 45%;">Submit Feedback</button>
        

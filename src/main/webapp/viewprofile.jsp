@@ -81,7 +81,7 @@ if(session.getAttribute("user")==null)
 		  if(y>0){
 			  out.print("<div class='card'><img src='images/profilephoto.jpg' alt='John' style='width:100%'><h1>"+y1+"</h1><p class='title'>Student</p></div>");
 
-out.print("<div class='card1 col-md-8 offset-3'><div class='left'><p><b>Username</b> </p> <p><b>Email ID</b></p>  <p><b>Date of Birth</b></p> <p><b>Points</b> </p><p><b>Level</b> </p><p><b>Interests</b> </p></div>");
+out.print("<div class='card1 col-md-8 offset-3' style='height:auto'><div class='left'><p><b>Username</b> </p> <p><b>Email ID</b></p>  <p><b>Date of Birth</b></p> <p><b>Points</b> </p><p><b>Level</b> </p><p><b>Interests</b> </p></div>");
 out.print("<div class='right'><p>"+(String)session.getAttribute("user")+"</p> <p>"+y2+"</p><p>"+y3+"</p><p>"+y4+"</p><p>"+y5+"</p><p>Machine Learning, Python , Java </p> </div>");
          
 		  }

@@ -198,6 +198,7 @@ button {
     background-color: #DADADA;
     border-radius: 5px;
     border: 5px solid #ccc;
+   
   }
   
  .body .message {
@@ -212,19 +213,7 @@ button {
       margin-left:5% ;
   }
 
-  .btn {
-    background: #79DAFF;
-    height: 100px;
-    width: 100px;
-    border-radius: 50px;
-    text-align: center;
-    line-height: 100px;
-    text-shadow: 1px 1px 1px #1684B2;
-    margin: 100px auto;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 10px 10px #134;
-  }
+  
   
   .gloss {
     background: #FFF;

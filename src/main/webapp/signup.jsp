@@ -18,14 +18,15 @@
       <script src="javascript/signup.js"></script>
 </head>
 <body>
-<form action="Register" method="post">
-    <div class="float-container">
+
+    <div class="float-container" style="display:flex">
     <div class="imgcontainer" >
       <img src="images/signup1.png" alt="bgimg" style="height:100%;">
     </div>
   
     <div class="container" style="position: relative; padding-top: 4%;">
         <div class="new">
+        <form action="Register" method="post">
           <p>SIGN UP ON <strong>BUG FIXING PORTAL</strong></p>
           <label for="uname">Name</label>
           <input type="text" placeholder="Enter your name" name="name" id="name" required>

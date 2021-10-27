@@ -206,15 +206,16 @@ if(session.getAttribute("user")==null)
                             <br>
                             <form action="IssuePage" method="post" style="display:flex">
                             <input type="hidden" name="issueval" value="${param.issue}"/>
-                            <textarea id="addcomment" placeholder="add comment...." name="addcomment" style="border:solid 1px orange"; rows="1" cols="48"></textarea>
+                            <textarea id="addcomment" placeholder="add comment...." name="addcomment" style="border:solid 1px orange;width:auto"; rows="1";></textarea>
                                 
-   
-                            <button type="submit" class="btn btn-primary" style="height:100px;width:120px">Comment</button>
+                             
                             </form>
                             <br>
                         
                         </div>
                         </div>
+                        <div>
+                            <button type="submit" class="btn-primary offset-md-3 col-md-3"  >Comment</button></div>
                         </div>
 </body>
 </html>

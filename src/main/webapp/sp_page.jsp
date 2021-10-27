@@ -46,10 +46,6 @@
             </nav>
 
         </div>
-        <div class="content">
-            <img src="images/unlock-clipart.png" style="width:25%;height:25%;float:right;margin-right: 13%;margin-top: 7%;">
-        <div class="container1 " style="position: relative; padding-top: 4%;">
-        <br>
         <div style="text-align:center">
         <%
         session = request.getSession();
@@ -64,12 +60,17 @@
         
         %>
         </div>
+        <div class="content">
+            <img src="images/unlock-clipart.png" style="width:25%;height:25%;float:right;margin-right: 13%;margin-top: 7%;">
+        <div class="container1 " style="position: relative; padding-top: 4%;">
+        <br>
+        
         <br>
         <form action="SPRegistration" method="post">    
             <div class="new col-offset-2 col-md-9">
             <h4>Upgrade to Service provider</h4>
             <label for="email">Email-ID</label><br>
-          <input type="email" placeholder="Enter your Email-ID" name="email" id="email" style="width:390px; height:50px" required>
+          <input type="email" placeholder="Enter your Email-ID" name="email" id="email" style="width:100%; height:50px" required>
           <br>
           <label for="uname">Username</label>
           <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
