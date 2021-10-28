@@ -24,6 +24,7 @@ if(session.getAttribute("user")==null)
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
         <script src="javascript/common.js"></script>
+        <script src="javascript/issue.js"></script>
 </head>
 <body>
     <div class="outer">
@@ -204,16 +205,17 @@ if(session.getAttribute("user")==null)
                           
                             
                             <br>
-                            <form action="IssuePage" method="post" style="display:flex">
+                            <form action="IssuePage" method="post">
                             <input type="hidden" name="issueval" value="${param.issue}"/>
-                            <textarea id="addcomment" placeholder="add comment...." name="addcomment" style="border:solid 1px orange;width:auto"; rows="1";></textarea>
+                            <textarea id="addcomment" onkeyup="makeit()" placeholder="add comment...." name="addcomment" style="border:solid 1px orange;width:auto"; rows="1";></textarea>
                                 
                              
-                            </form>
+                            
                             <br>
                         <div>
-                            <button style="background:grey" type="submit" class="btn-primary offset-md-9 col-md-3"  >Comment</button></div>
+                            <button id="sub" disabled style="background:grey" type="submit" class="btn-primary offset-md-9 col-md-3"  >Comment</button></div>
                         </div>
+                        </form>
                         </div>
                         </div>
                         
