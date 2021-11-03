@@ -200,6 +200,13 @@ if(session.getAttribute("user")==null)
         <!-- <label for="test" class="new"><b>Interests</b> </label>
         <span><input name="interests" id="interests" type="text" /></span> -->
         <br>
+        <label for="uploadfile" class="new"><b>Display Picture</b></label>
+                    <input type="file" accept=".jpg, .jpeg, .png" id="uploadfile" name="uploadfile" onchange="imageDisplay()">
+                    
+                    <div style="text-align: center;">
+                    <img src="#" style="display: none; max-width:300px; max-height:300px" id="imgdisp">
+                    </div>
+        <br><br><br>
          <button type="submit" id="save_changes" class="btn btn-success update">Save Changes</button>
     </div>
     </form>

@@ -11,13 +11,14 @@ points integer default 0,
 level varchar(50) default "bronze"
 );
 
+alter table user_details add column interests varchar(255) default 'just entered';
+alter table user_details add column picsource varchar(200) default '';
 update user_details set level="diamond" where name="Monisha";
 select * from user_details;
 truncate user_details;
 drop table user_details;
 
 alter table user_details drop picsource;
-alter table user_details add column interesys varchar(255) default "just enterred";
 
 create table feedback(
 username varchar(20) primary key ,

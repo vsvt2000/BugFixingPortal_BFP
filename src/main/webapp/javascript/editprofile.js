@@ -129,3 +129,9 @@ function onFocus () {
   else
       button.disabled = true;
   }
+
+function imageDisplay() {
+    var image = document.getElementById('imgdisp');
+    image.src = URL.createObjectURL(event.target.files[0]);
+    image.style.display = "block";
+}

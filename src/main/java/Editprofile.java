@@ -9,6 +9,20 @@ import javax.servlet.annotation.*;
 public class Editprofile extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
+    private String getFileName(final Part part) {
+        
+        
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename")) {
+            	
+                content = content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
+                content = content.substring(content.lastIndexOf('.'));
+                System.out.println(content);
+                return content;
+            }
+        }
+        return null;
+    }
     
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,9 +39,13 @@ public class Editprofile extends HttpServlet {
             String dob = (String)request.getParameter("dob");
             String email = (String)request.getParameter("emailid");
             String[] interest = (String[])request.getParameterValues("title[]");
-            //Part part=request.getPart("uploadfile");
-    		//String filename=part.getSubmittedFileName();
-    		//out.println(filename);
+            Part part=request.getPart("uploadfile");
+            HttpSession session=request.getSession(false);
+            String user = (String) session.getAttribute("user");
+            OutputStream outst = null;
+            InputStream filecontent = null;
+            String photo=null;
+               		
             out.print("interests:"+interest.length);
             out.print("d"+dob+" e"+email+" O"+oldpass);
             String interestfinal="";
@@ -44,7 +62,7 @@ public class Editprofile extends HttpServlet {
             conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
              
             if (conn!=null){
-            	HttpSession session=request.getSession(false);
+            	
                 try{
                 String msg="";
                 if(oldpass.length()!=0 && newpass.length()!=0 && confirmpass.length()!=0) {
@@ -62,6 +80,8 @@ public class Editprofile extends HttpServlet {
 //                                response.sendRedirect("login.jsp?msg="+msg);
                             
                         }
+                    
+                  
                         
                     
 //                    else{
@@ -89,6 +109,29 @@ public class Editprofile extends HttpServlet {
 //                                response.sendRedirect("login.jsp?msg="+msg);
                             
                         }
+                }
+                
+                if(part!=null)
+                {
+                	String fileName = user+getFileName(part);
+                	String path= "F://College//SemVII//NCP - 15CSE376//Project//BugFixingPortal_BFP//src//main//webapp//LocalDB//DispPic";
+                	
+                	File file=new File(path);
+    				file.createNewFile();
+    				outst = new FileOutputStream(new File(path + "//"+ fileName));
+    				filecontent = part.getInputStream();
+    				int read = 0;
+    				final byte[] bytes = new byte[1024];
+    	        
+    				while ((read = filecontent.read(bytes)) != -1) 
+    					outst.write(bytes, 0, read);
+    	            
+    					photo=path+"/"+fileName;
+    					PreparedStatement ps= conn.prepareStatement("update user_details set picsource=? where username=?");
+                        ps.setString(1,photo);
+                        ps.setString(2,(String)session.getAttribute("user"));
+                        int x = ps.executeUpdate();	
+    					
                 }
                 
                 if(dob.length()!=0) {
