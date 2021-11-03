@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.sql.*" %>
 <% 
 response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
 if(session.getAttribute("user")==null)
@@ -60,9 +61,31 @@ if(session.getAttribute("user")==null)
                                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                                                 <select class="form-control" id="exampleFormControlSelect1">
                                                     <option>Problem Domain</option>
-                                                    <option>Cyber Security</option>
-                                                    <option>Cloud</option>
-                                                    <option>Data Structures</option>
+                                                    <% 
+                                                    Connection conn=null;
+                                                    //session=request.getSession();
+                                                    try{
+                                                    	Class.forName("com.mysql.jdbc.Driver");
+                                                  	  	conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
+                                                  	  	//String uname =(String)session.getAttribute("user");
+                                                    	
+                                                    	String y1="";
+                                                    	
+                                                    	 if (conn!=null){
+                                                   		  PreparedStatement ps= conn.prepareStatement("select distinct domain from issues");
+
+                                                   		  //ps.setString(1,uname);
+                                                   		  ResultSet x = ps.executeQuery();
+                                                   		  while(x.next()){
+                                                   			  y1=x.getString("domain");
+                                                   			  out.print("<option>"+y1+"</option>");
+                                                   		  }
+                                                   			
+                                                    	 }
+                                                    }catch(Exception e){
+                                                    	out.print("<h1>null</h1>");
+                                                    }
+                                                    %>
                                                 </select>
                                             </div>
                                             <div class="col-lg-8 col-md-6 col-sm-12 p-0">
@@ -98,7 +121,32 @@ if(session.getAttribute("user")==null)
                                         <div class="result-header">
                                             <div class="row">
                                                 <div class="col-lg-6">
-                                                    <div class="records">Showing: <b>1-20</b> of <b>20</b> result</div>
+                                                    <div class="records">
+                                                    <% try{
+                                                    	Class.forName("com.mysql.jdbc.Driver");
+                                                  	  	conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
+                                                  	  	//String uname =(String)session.getAttribute("user");
+                                                    	
+                                                    	int y1=0;
+                                                    	
+                                                    	 if (conn!=null){
+                                                   		  PreparedStatement ps= conn.prepareStatement("select count(*) as c from issues");
+
+                                                   		  //ps.setString(1,uname);
+                                                   		  ResultSet x = ps.executeQuery();
+                                                   		  while(x.next()){
+                                                   			  y1=x.getInt("c");
+                                                   			 
+                                                   			  
+                                                   				out.print(" Showing: <b>1-"+y1+"</b> of <b>"+y1+"</b> result</div>");
+                                                   			  
+                                                   		  }
+                                                   			
+                                                    	 }
+                                                    }catch(Exception e){
+                                                    	out.print("<h1>null</h1>+e");
+                                                    } %>
+                                                   
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="result-actions">
@@ -118,85 +166,47 @@ if(session.getAttribute("user")==null)
                                             <div class="table-responsive">
                                                 <table class="table widget-26">
                                                     <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="widget-26-job-emp-img">
-                                                                   
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="widget-26-job-title">
-                                                                    <a href="#">Problem #1</a>
-                                                                    <p class="m-0"><a href="#"
-                                                                            class="employer-name">Problem Dowmain</a> <span
-                                                                            class="text-muted time">1 days ago</span>
-                                                                    </p>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="widget-26-job-info">
-                                                                    <p class="type m-0">upvotes</p>
-                                                                    <p class="text-muted m-0">#9999</p>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="widget-26-job-salary">account level</div>
-                                                            </td>
-                                                           
-                                                            
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="widget-26-job-emp-img">
-                                                                    
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="widget-26-job-title">
-                                                                    <a href="#">Problem #2</a>
-                                                                    <p class="m-0"><a href="#"
-                                                                            class="employer-name">Problem Domain</a> <span
-                                                                            class="text-muted time">2 days ago</span>
-                                                                    </p>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="widget-26-job-info">
-                                                                    <p class="type m-0">upvotes</p>
-                                                                    <p class="text-muted m-0">#99999</span></p>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="widget-26-job-salary">account level</div>
-                                                            </td>
-                                                            
-                                                            
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="widget-26-job-emp-img">
-                                                                    
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="widget-26-job-title">
-                                                                    <a href="#">Problem #3</a>
-                                                                    <p class="m-0"><a href="#"
-                                                                            class="employer-name">Problem Domain</a> <span
-                                                                            class="text-muted time">4 days ago</span>
-                                                                    </p>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="widget-26-job-info">
-                                                                    <p class="type m-0">upvotes</p>
-                                                                    <p class="text-muted m-0">#99999</span></p>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="widget-26-job-salary">account level</div>
-                                                            </td>
-                                                        </tr>
+                                                    <%
+                                                    String search=request.getParameter("search").toLowerCase();
+                                                    try{
+                                                    	Class.forName("com.mysql.jdbc.Driver");
+                                                  	  	conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
+                                                  	  	//String uname =(String)session.getAttribute("user");
+                                                    	
+                                                    	String y1="";
+                                                    	String y2="";
+                                                    	int y3=0;
+                                                    	 if (conn!=null){
+                                                    		 if(search.length()>0){
+                                                   		  PreparedStatement ps= conn.prepareStatement("select problem_id ,prob,domain from issues where lower(prob) like '%"+search+"%' or lower(domain) like '%"+search+"%' or lower(description) like '%"+search+"%' ");
+
+                                                   		  ResultSet x = ps.executeQuery();
+                                                   		  while(x.next()){
+                                                   			  y1=x.getString("prob");
+                                                   			  y2=x.getString("domain");
+                                                   			  y3=x.getInt("problem_id");
+                                                   			  
+                                                   			  out.print("<tr> <td> <div class='widget-26-job-emp-img'> </div> </td> <td> <div class='widget-26-job-title'> <a href='issue.jsp?issue="+y3+"'>"+y1+"</a> <p class='m-0'>"+y2+"<span class='text-muted time'>4 days ago</span> </p> </div> </td> <td> <div class='widget-26-job-info'> <p class='type m-0'>upvotes</p> <p class='text-muted m-0'>#99999</span></p> </div> </td> <td> <div class='widget-26-job-salary'>account level</div> </td> </tr>");
+                                                   		  }
+                                                    		 }
+                                                    		 else{
+                                                    			 PreparedStatement ps= conn.prepareStatement("select problem_id, prob,domain from issues");
+
+                                                          		  ResultSet x = ps.executeQuery();
+                                                          		  while(x.next()){
+                                                          			  y1=x.getString("prob");
+                                                          			  y2=x.getString("domain");
+                                                          			  y3=x.getInt("problem_id");
+                                                          			  
+                                                          			  out.print("<tr> <td> <div class='widget-26-job-emp-img'> </div> </td> <td> <div class='widget-26-job-title'> <a href='issue.jsp?issue="+y3+"'>"+y1+"</a> <p class='m-0'>"+y2+"<span class='text-muted time'>4 days ago</span> </p> </div> </td> <td> <div class='widget-26-job-info'> <p class='type m-0'>upvotes</p> <p class='text-muted m-0'>#99999</span></p> </div> </td> <td> <div class='widget-26-job-salary'>account level</div> </td> </tr>");
+                                                          		  }
+                                                    		 }
+                                                    	 }
+                                                    }catch(Exception e){
+                                                    	out.print("<h1>null</h1>"+e);
+                                                    } 
+                                                    %>
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>

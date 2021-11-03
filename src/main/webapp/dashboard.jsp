@@ -94,9 +94,9 @@ if(session.getAttribute("user")==null)
                 <!-- text,input -->
                 <div class="inp">
 
-                    <form class="example col-offset-2">
+                    <form action="search_result.jsp" method="post" class="example col-offset-2">
                         <input type="text" placeholder="Search.." name="search" />
-                       <a href="search_result.jsp" ><button type="button" style="padding-bottom: 10px"><i class="fa fa-search"></i></button></a>
+                       <a href="search_result.jsp" ><button type="submit" style="padding-bottom: 10px"><i class="fa fa-search"></i></button></a>
 
                     </form>
 
