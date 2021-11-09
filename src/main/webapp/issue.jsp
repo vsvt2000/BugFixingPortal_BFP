@@ -86,92 +86,7 @@ if(session.getAttribute("user")==null)
         
         <div class="comments">
         <b> Comments:</b>
-        <div class="dialogbox">
-            <div class="body">
-              <span class="tip tip-left"></span>
-              <div class="message">
-                <b>User_123</b>
-                <br>
-                <span>Can you attach the code files for better understanding</span>
-                <br>
-                
-                
-<i class="fa fa-thumbs-up"></i>
-<script>
-   document.querySelector(".fa").addEventListener("click", function(event) {
-      toggleLike(event);
-   });
-   function toggleLike(ele) {
-      ele.target.classList.toggle("fa-thumbs-down");
-   }
-</script>
-                
-              </div>
-              
-            </div>
-          </div>
-         
         </div>
-
-
-        <div class="comments">
-        
-            <div class="dialogbox">
-                <div class="body">
-                  <span class="tip tip-left"></span>
-                  <div class="message">
-                    <b>RIana_2017</b>
-                    <br>
-                    <span>Check if inline css is overwritting the required css</span>
-                    <br>
-                    
-                    
-    <i class="fa fa-thumbs-up"></i>
-    <script>
-       document.querySelector(".fa").addEventListener("click", function(event) {
-          toggleLike(event);
-       });
-       function toggleLike(ele) {
-          ele.target.classList.toggle("fa-thumbs-down");
-       }
-    </script>
-                    
-                  </div>
-                  
-                </div>
-              </div>
-             
-            </div>
-
-
-            <div class="comments">
-               
-                <div class="dialogbox">
-                    <div class="body">
-                      <span class="tip tip-left"></span>
-                      <div class="message">
-                        <b>COder1</b>
-                        <br>
-                        <span>is the background overflow set to none</span>
-                        <br>
-                        
-                        
-        <i class="fa fa-thumbs-up"></i>
-        <script>
-           document.querySelector(".fa").addEventListener("click", function(event) {
-              toggleLike(event);
-           });
-           function toggleLike(ele) {
-              ele.target.classList.toggle("fa-thumbs-down");
-           }
-        </script>
-                        
-                      </div>
-                      
-                    </div>
-                  </div>
-                 
-                </div>
                 <%
                 
                 //HttpSession session=request.getSession(false);
@@ -189,7 +104,7 @@ if(session.getAttribute("user")==null)
                		 y1=x.getString("username");
                		 y2=x.getString("response");
                		 out.print("<div class='comments'> <div class='dialogbox'> <div class='body'> <span class='tip tip-left'></span> <div class='message'> <b>"+y1+"</b> <br> <span>"+y2+"</span> <br> ");
-               	 	 out.print("<i class='fa fa-thumbs-up'></i> <script> document.querySelector('.fa').addEventListener('click', function(event) { toggleLike(event); }); function toggleLike(ele) { ele.target.classList.toggle('fa-thumbs-down'); } </script></div> </div> </div> </div>");
+               	 	 out.print("</div> </div> </div> </div>");
                	 }
 
                 }catch(Exception e){
