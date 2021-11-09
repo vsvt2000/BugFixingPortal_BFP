@@ -40,7 +40,44 @@ public class RaiseIssue extends HttpServlet {
             ps.setString(4,desc);
             ps.setString(5,type);
             int x = ps.executeUpdate();
-            
+            if(type.equals("direct")){
+            	PreparedStatement temp= conn.prepareStatement("select points,level from user_details where username=?");
+                temp.setString(1,(String)session.getAttribute("user"));
+                ResultSet rs=temp.executeQuery();
+                int pts=0;
+                String lvl="";
+                while(rs.next()) {
+                	pts=rs.getInt("points");
+                	lvl=rs.getString("level");
+                }
+                pts=pts-3;
+                if(pts>=0 && pts<10){
+                    lvl="Bronze";
+                }
+                if(pts>=10 && pts<20){
+                    lvl="Silver";
+                }
+                if(pts>=20 && pts<30){
+                    lvl="Gold";
+                }
+                if(pts>=30 && pts<40){
+                    lvl="Platinum";
+                }
+                if(pts>40){
+                    lvl="Diamond";
+                }
+                PreparedStatement item=conn.prepareStatement("update user_details set points=?, level=? where username=?");
+                item.setInt(1, pts);
+                item.setString(2, lvl);
+                item.setString(3, (String)session.getAttribute("user"));
+                x=item.executeUpdate();
+                if(x>0) {
+                	out.print(pts+" "+lvl+" "+(String)session.getAttribute("user"));
+                	//response.sendRedirect("myissues");
+                    //session.setAttribute("msg","1");
+                }
+                
+            }
             response.sendRedirect("myissues");
             session.setAttribute("msg","1");
 		}

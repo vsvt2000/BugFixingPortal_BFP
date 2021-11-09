@@ -97,42 +97,32 @@ if(session.getAttribute("user")==null)
                     conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
                 	int issue=Integer.parseInt((String)request.getParameter("issue"));
                 	String y1="";String y2="";
-                	PreparedStatement ps= conn.prepareStatement("SELECT username,response FROM INTERACTION where problem_id=?");
+                	PreparedStatement ps= conn.prepareStatement("SELECT username,response,solved FROM INTERACTION where problem_id=?");
                 	ps.setInt(1,issue);
                	 	ResultSet x =ps.executeQuery();
+               	 	String solved="N";
                	 while(x.next()) {
                		 y1=x.getString("username");
                		 y2=x.getString("response");
                		 out.print("<div class='comments'> <div class='dialogbox'> <div class='body'> <span class='tip tip-left'></span> <div class='message'> <b>"+y1+"</b> <br> <span>"+y2+"</span> <br> ");
                	 	 out.print("</div> </div> </div> </div>");
+               	 	 if(x.getString("solved").equals("Y")){
+               	 		 solved=y1;
+               	 	 }
                	 }
-
+               	 
+               	if(solved.equals("N")){
+               		out.print("<div class='comments'> <div class='dialogbox'> <div class='body'> <span class='tip tip-left'></span> <br> <form action='IssuePage' method='post'> <input type='hidden' name='issueval' value='${param.issue}'/> <textarea id='addcomment' onkeyup='makeit()' placeholder='add comment....' name='addcomment' style='border:solid 1px orange;width:auto'; rows='1';></textarea> <br> <div> <button id='sub' disabled style='background:grey' type='submit' class='btn-primary offset-md-9 col-md-3' >Comment</button></div> </div> </form> </div> </div>");
+               	}
+               	else{
+               		out.print("<h4>Issue Solved by <i>"+solved+"</i></h4>");
+               	}
                 }catch(Exception e){
                 }
                 
                 %>
 
-                <div class="comments">
-        
-                    <div class="dialogbox">
-                        <div class="body">
-                          <span class="tip tip-left"></span>
-                          
-                            
-                            <br>
-                            <form action="IssuePage" method="post">
-                            <input type="hidden" name="issueval" value="${param.issue}"/>
-                            <textarea id="addcomment" onkeyup="makeit()" placeholder="add comment...." name="addcomment" style="border:solid 1px orange;width:auto"; rows="1";></textarea>
-                                
-                             
-                            
-                            <br>
-                        <div>
-                            <button id="sub" disabled style="background:grey" type="submit" class="btn-primary offset-md-9 col-md-3"  >Comment</button></div>
-                        </div>
-                        </form>
-                        </div>
-                        </div>
+                
                         
 </body>
 </html>

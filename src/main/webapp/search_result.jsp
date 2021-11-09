@@ -128,20 +128,17 @@ if(session.getAttribute("user")==null)
                                                   	  	//String uname =(String)session.getAttribute("user");
                                                     	
                                                     	int y1=0;
-                                                    	
+                                                    	String search=request.getParameter("search").toLowerCase();
                                                     	 if (conn!=null){
-                                                   		  PreparedStatement ps= conn.prepareStatement("select count(*) as c from issues");
+                                                    		 PreparedStatement ps= conn.prepareStatement("select problem_id ,prob,domain from issues where lower(prob) like '%"+search+"%' or lower(domain) like '%"+search+"%' or lower(description) like '%"+search+"%' ");
 
                                                    		  //ps.setString(1,uname);
                                                    		  ResultSet x = ps.executeQuery();
                                                    		  while(x.next()){
-                                                   			  y1=x.getInt("c");
-                                                   			 
-                                                   			  
-                                                   				out.print(" Showing: <b>1-"+y1+"</b> of <b>"+y1+"</b> result</div>");
-                                                   			  
+                                                   			  y1+=1;
                                                    		  }
-                                                   			
+                                                   			  out.print(" Showing: <b>1-"+y1+"</b> of <b>"+y1+"</b> result</div>");
+                                                   			  
                                                     	 }
                                                     }catch(Exception e){
                                                     	out.print("<h1>null</h1>+e");
