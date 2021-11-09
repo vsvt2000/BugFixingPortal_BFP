@@ -2,7 +2,11 @@ import javax.servlet.http.*;
 import java.sql.*;
 import javax.servlet.ServletException;
 import java.io.*;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.List;
+import java.util.Random;
 
 //@WebServlet("/Register")
 public class Viewprofile extends HttpServlet {
@@ -21,7 +25,8 @@ public class Viewprofile extends HttpServlet {
     		  conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
     		  //String uname =(String)session.getAttribute("user");
     		  //String psw=request.getParameter("psw");
-    		  
+    		  int tot=0;int count=0;
+    		  HashMap<String, Integer> dict = new HashMap<String, Integer>();
     		  if (conn!=null){
     			  PreparedStatement ps= conn.prepareStatement("select * from user_details where username=?");
 
@@ -30,7 +35,7 @@ public class Viewprofile extends HttpServlet {
     			  //out.print(x);
     			  int y=0;
     			  String y1="";String y2="";String y3="";int y4=0;String y5="";
-    			  String y6="";
+    			  String y6=""; 
     			  
     			  while(x.next()){
     				  y1=x.getString("name");
@@ -41,12 +46,59 @@ public class Viewprofile extends HttpServlet {
     				  y6=x.getString("interests");
     				  
     				  y+=1;
+    				  
+    				 
+    				  
     			  }
-    			  
-    			  if(y>0){
-    				  out.print("<div class='card'><img src='images/profilephoto.jpg'  alt='John' style='width:100%'><h1>"+y1+"</h1><p class='title'>Student</p></div>");
+    			  PreparedStatement ps1= conn.prepareStatement("select * from interaction where username=?");
+				  ps1.setString(1,(String)session.getAttribute("user"));
+				  ResultSet x1 = ps1.executeQuery();
+				  String pid="";
+				  String tag="";
+				   // import the HashMap class
 
-    	out.print("<div class='card1 col-md-8 offset-3'><div class='left'><p><b>Username</b> </p> <p><b>Email ID</b></p>  <p><b>Date of Birth</b></p> <p><b>Points</b> </p><p><b>Level</b> </p><p><b>Interests</b> </p></div>");
+				 
+				 
+				  while(x1.next()) {
+					  pid= x1.getString("problem_id");
+					  System.out.println(pid);
+					  PreparedStatement ps2= conn.prepareStatement("select * from issues where problem_id=?");
+					  ps2.setString(1,pid);
+					  ResultSet x2 = ps2.executeQuery();
+					  
+					  while(x2.next())
+					  { tag=x2.getString("domain");
+					  System.out.println(tag);
+					  if (y6.contains(tag))
+					  {
+						  count=count+1;
+						  System.out.println("in3");
+					  {if (dict.containsKey(tag))
+			            {
+						    System.out.println("in");
+			                dict.put(tag, dict.get(tag) + 1);
+			            }
+			            else
+			            {
+			            	 System.out.println("in1");
+			                dict.put(tag, 1);
+			            }
+					  
+					  } }}}
+				  System.out.println(dict);
+				  
+				  for (Entry<String, Integer> pair : dict.entrySet()) {
+				      tot += pair.getValue();
+				  }
+				  
+				  
+    			  if(y>0){
+    				  
+    				  
+    				  
+    				  out.print("<div class='card'><img src='images/profilephoto.jpg'  alt='John' style='width:100%'><h1>"+y1+"</h1><p class='title'>Student</p></div>");
+       
+    	out.print("<div class='card1 col-md-8 offset-3'><div class='left'><p><b>Username</b> </p> <p><b>Email ID</b></p>  <p><b>Date of Birthh</b></p> <p><b>Points</b> </p><p><b>Level</b> </p><p><b>Interests</b> </p></div>");
     	out.print("<div class='right'><p>"+(String)session.getAttribute("user")+"</p> <p>"+y2+"</p><p>"+y3+"</p><p>"+y4+"</p><p>"+y5+"</p><p>"+y6+"</p> </div>");
     	         
     			  }
@@ -54,8 +106,29 @@ public class Viewprofile extends HttpServlet {
     				  out.print("<p name='res' value='no'>problem!!</p>");
     			  }
     		  }
-    		  out.print("<br> <div style='padding-top: 250px;'> <br> <h3>User Interaction Statistics</h3> <p> These charts represents the level of correctness in your solutions based on the domain </p> <p>HTML</p> <div class='container'> <div class='skills html'>90%</div> </div> <p>CSS</p> <div class='container'> <div class='skills css'>80%</div> </div> <p>JavaScript</p> <div class='container'> <div class='skills js'>65%</div> </div> <p>PHP</p> <div class='container'> <div class='skills php'>60%</div> </div> </div> </div> </body> </html>");
-    	  }catch(Exception e){
+    		  List<String> list = new ArrayList<>();
+    	        // add 5 element in ArrayList
+    	        list.add("#04AA6D");
+    	        list.add("#2196F3");
+    	        list.add("#f44336");
+    	        list.add("#808080");
+    	       
+    		  System.out.println("total"+tot);
+    		  out.print("<br> <div style='padding-top: 250px;'> <br> <h3>User Interaction Statistics</h3> <p> This chart represents your interactions corresponding to  areas of interest specified  </p> ");
+    		  if (count==0)
+    		  {
+    			  out.print("<p> You haven't submitted any responses corresponding to your areas of interest yet.</p> ");
+    		  }
+    		  for (Entry<String, Integer> pair : dict.entrySet()) {
+			     System.out.println(pair.getKey());
+			     System.out.println(pair.getValue());
+			     System.out.println(tot);
+			     System.out.println((pair.getValue()*100/tot));
+			     Random rand = new Random();
+			     out.print("<p>"+pair.getKey()+"</p> <div class='container' > <div class='skills' style='width:"+(((pair.getValue())*100/tot))+"%; background-color:"+list.get(rand.nextInt(list.size()))+";'>"+(((pair.getValue()*100)/tot))+"%</div> </div></body> </html>");
+
+    		  }
+    		  }catch(Exception e){
     		  out.print("Something is wrong.."+e);
     	  }
  

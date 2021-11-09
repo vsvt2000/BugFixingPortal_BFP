@@ -24,7 +24,7 @@ if(session.getAttribute("user")==null)
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <script src="javascript/common.js"></script>
 </head>
-
+<%@ page import="java.sql.*" %>
 <body>
     <div class="outer" >
         <div class="header1 row" style="margin:0px 0px 0px 0px">
@@ -35,7 +35,7 @@ if(session.getAttribute("user")==null)
                         <button class="dropbtn"><img class="img1" src="images/logo.png" alt="logo"></button>
                         <div class="dropdown-content">
                           <a href="aboutus.jsp">About Us</a>
-                          <a href="viewprofile.jsp">View My Profile</a>
+                          <a href="Viewprofile">View My Profile</a>
                           <a href="feedback.jsp">Feedback</a>
                           <a href="sp_page.jsp">Upgrade to SP</a>
                           <a href="myissues">Issues Page</a>
@@ -107,51 +107,67 @@ if(session.getAttribute("user")==null)
 
             </div>
         </div>
+      
         <div class="popular col-md-6 offset-md-3">
+       
+      <%   String uname =(String)session.getAttribute("user");
+      out.print("<p>Welcome back "+ uname+"! these are the latest queries on the forum which you might have missed. </p>");
+      %>
             <table class="table table-success   popular-table"> 
                 <thead>
                     <tr>
-                        <th scope="col">Username</th>
-                        <th scope="col">Query topic</th>
-                        <th scope="col">Interactions</th>
+                        <th scope="col">Creator</th>
+                        <th scope="col">Domain</th>
+                        <th scope="col">Problem</th>
+                          <th scope="col">Interactions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Mark</td>
-                        <td>HTML</td>
-                        <td>33</td>
-                    </tr>
-                    <tr>
-                        <td>Jacob</td>
-                        <td>CSS</td>
-                        <td>32</td>
-                    </tr>
-                    <tr>
-                        <td>Larry</td>
-                        <td>Bootstrap</td>
-                        <td>31</td>
-                    </tr>
+                 <% 
+                 
+                 
+                 Connection conn=null;
+                 try{
+                 	Class.forName("com.mysql.jdbc.Driver");
+               	  	conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
+               	  	uname =(String)session.getAttribute("user");
+                 	
+                 	String y2="";String y3="";String y4="";String y5="";int y6;int y7=0;int interactions;
+                 	
+                 	 if (conn!=null){
+                 		
+                		  PreparedStatement ps1= conn.prepareStatement("SELECT * FROM issues ORDER BY problem_id DESC LIMIT 7");
+
+                		  
+                		  ResultSet x1 = ps1.executeQuery();
+                		  while(x1.next()){
+                			  y2=x1.getString("username");
+                			  y3=x1.getString("prob");
+                			  y4=x1.getString("domain");
+                			  y5=x1.getString("description");
+                			  y6=x1.getInt("problem_id");
+                			  PreparedStatement ps2= conn.prepareStatement("SELECT * FROM interaction where problem_id=?");
+							  ps2.setInt(1,y6);
+                    		  
+                    		  ResultSet x2 = ps2.executeQuery();
+                    		  interactions=0;
+                    		  while(x2.next()){interactions=interactions+1;}
+                			  out.print("<tr> <td>"+y2+"</td> <td>"+y4+"</td><td><a href=\"issue.jsp?issue="+y6+"\">"+y3+"</td><td>"+interactions+"</td></tr>");
+                		  }
+                		  	
+                         
+                            
+                        
+                 	 }
+                 }catch(Exception e){
+                 	out.print("<h1>null</h1>");
+                 }
+ %>
                 </tbody>
             </table>
         </div>
 
-        <div class="active col-md-6 offset-md-3">
-            <table class="table table-success   active-table"> 
-                <thead>
-                    <tr>
-                        <th scope="col">Query topic</th>
-                        <th scope="col">Interactions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>HTML</td>
-                        <td>33</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+       
     </div>
 </body>
 

@@ -11,6 +11,8 @@ public class Editprofile extends HttpServlet {
     
     private String getFileName(final Part part) {
         
+    	if (part==null|| part.getSize()==0)
+        	return null;
         
         for (String content : part.getHeader("content-disposition").split(";")) {
             if (content.trim().startsWith("filename")) {
@@ -111,29 +113,29 @@ public class Editprofile extends HttpServlet {
                         }
                 }
                 
-                if(part!=null)
-                {
-                	String fileName = user+getFileName(part);
-                	String path= "F://College//SemVII//NCP - 15CSE376//Project//BugFixingPortal_BFP//src//main//webapp//LocalDB//DispPic";
-                	
-                	File file=new File(path);
-    				file.createNewFile();
-    				outst = new FileOutputStream(new File(path + "//"+ fileName));
-    				filecontent = part.getInputStream();
-    				int read = 0;
-    				final byte[] bytes = new byte[1024];
-    	        
-    				while ((read = filecontent.read(bytes)) != -1) 
-    					outst.write(bytes, 0, read);
-    	            
-    					photo=path+"/"+fileName;
-    					PreparedStatement ps= conn.prepareStatement("update user_details set picsource=? where username=?");
-                        ps.setString(1,photo);
-                        ps.setString(2,(String)session.getAttribute("user"));
-                        int x = ps.executeUpdate();	
-    					
-                }
-                
+//                if(part!=null)
+//                {
+//                	String fileName = user+getFileName(part);
+//                	String path= ":D://BFPfinal//BugFixingPortal_BFP//src//main//webapp//LocalDB//DispPic";
+//                	
+//                	File file=new File(path);
+//    				file.createNewFile();
+//    				outst = new FileOutputStream(new File(path + "//"+ fileName));
+//    				filecontent = part.getInputStream();
+//    				int read = 0;
+//    				final byte[] bytes = new byte[1024];
+//    	        
+//    				while ((read = filecontent.read(bytes)) != -1) 
+//    					outst.write(bytes, 0, read);
+//    	            
+//    					photo=path+"/"+fileName;
+//    					PreparedStatement ps= conn.prepareStatement("update user_details set picsource=? where username=?");
+//                        ps.setString(1,photo);
+//                        ps.setString(2,(String)session.getAttribute("user"));
+//                        int x = ps.executeUpdate();	
+//    					
+//                }
+//                
                 if(dob.length()!=0) {
                     PreparedStatement ps= conn.prepareStatement("update user_details set date_of_birth=? where username=?");
                     ps.setString(1,dob);
