@@ -13,6 +13,7 @@ level varchar(50) default "bronze"
 
 alter table user_details add column interests varchar(255) default 'just entered';
 alter table user_details add column picsource varchar(200) default '';
+update user_details set points=5 where name="Mithran";
 update user_details set level="diamond" where name="Monisha";
 select * from user_details;
 truncate user_details;

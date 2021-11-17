@@ -7,6 +7,7 @@ response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
 if(session.getAttribute("user")==null)
 	response.sendRedirect("login.jsp");
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 <html>
@@ -24,10 +25,8 @@ if(session.getAttribute("user")==null)
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <script src="javascript/common.js"></script>
-    <title>Service Provider- Dashboard</title>
+	<title>Suggest Solution</title>
 </head>
-
-
 <body>
 	<div class="outer" >
         <div class="header1 row" style="margin:0px 0px 0px 0px">
@@ -60,64 +59,64 @@ if(session.getAttribute("user")==null)
 
         </div>
         
-        <div style="background-color:red">
-        <%
-		session = request.getSession();
-		out.println("<h1 style='font-size:25px'>"+(String)session.getAttribute("user")+"</h1>");
+        <div style="text-align: center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-top:15px">
+			<p style="font-size:35px;">Resolve Issue</p>
+		</div>
+		<%
+			Connection conn = null;
+			String title = null, desc = null, sol = null;
+			int ID=-1;
+			try
+			{
+				Class.forName("com.mysql.jdbc.Driver");
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal", "root", "1234");
+				
+				ID = Integer.parseInt(request.getParameter("issue"));
+				sol = request.getParameter("solution");
+				if(conn != null)
+				{
+					if(sol == null)
+					{	PreparedStatement ps = conn.prepareStatement("select * from issues where problem_id=?");
+						ps.setInt(1,ID);
+						
+						ResultSet rs = ps.executeQuery();
+						
+						rs.next();
+						title = rs.getString("prob");
+						desc = rs.getString("description");		
+					}
+				}
+			}
+			
+			catch(Exception e)
+			{
+				out.println(e);
+			}
 		%>
-        </div>
-
-		<div style="text-align: center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-top:15px">
-			<p style="font-size:35px;">Issues to be Resolved</p>
-			<div class="col-lg-5" style="margin-left:550px;">
-				<table class="table table-success popular-table" style="margin-top:30px"> 
-	                <thead>
-	                    <tr>
-	                        <th scope="col">Creator</th>
-	                        <th scope="col">Domain</th>
-	                        <th scope="col">Problem</th>
-	                    </tr>
-	                </thead>
-	                <tbody>
+		<div class="d-flex justify-content-center">
+			<div class="border border-dark col-lg-4" style="border-radius:10px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-top:25px; margin-left:20px; margin-right:20px">
+				<p style="margin-top:10px; margin-left:10px; font-size:20px"><strong>Problem: </strong>
+					<% out.println(title); %>
+				</p>
+				<p style="margin-top:10px; margin-left:10px; font-size:20px"><strong>Description: </strong>
+					<% out.println(desc); %>
+				</p>
 				
-				<%
-				Connection conn=null;
-                try{
-                	Class.forName("com.mysql.jdbc.Driver");
-              	  	conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
-              	  	
-              	  	if(conn!=null)
-              	  	{
-              	  		PreparedStatement ps = conn.prepareStatement("select * from issues where type=? and status=?");
-              	  		ps.setString(1,"direct");
-              	  		ps.setString(2,"open");
-              	  		
-              	  		String y1="", y2="", y3="", y4=""; 
-              	  		ResultSet rs = ps.executeQuery();
-              	  		while(rs.next())
-              	  		{
-              	  			y1 = rs.getString("username");
-              	  			y2 = rs.getString("domain");
-              	  			y3 = rs.getString("prob");
-              	  			y4 = rs.getString("problem_id");
-              	  			
-              	  			out.println("<tr><td>"+y1+"</td> <td>"+y2+"</td> <td><a href=\"sp_solution.jsp?issue="+y4+"\">"+y3+"</a></td></tr>");
-              	  		}
-              	  			
-              	  	}
-              	  	}
-                
-                catch(Exception e)
-                {
-                	out.println(e);
-                }
 				
-				%>
-				</tbody>
-				</table>
+				<form action="sp_solution.jsp" method="post">
+				<label for="prob_id" style="margin-top:20px; font-size:20px; margin-left:10px;"><strong>Issue ID: </strong></label>
+				<input id="prob_id" name="prob_id" type="text" style="" value="<% out.print(ID); %>" readonly>
+				<br>
+				<label for="solution" style="margin-top:20px; font-size:20px; margin-left:10px;"><strong>Solution: </strong></label>
+				<br>
+				<textarea style="margin-left:15px; font-size:20px; font-style: 'Courier New', monospace; margin-top:10px; width:600px; height:200px" placeholder="Suggest a solution" required></textarea>
+				<button type="submit" class="btn btn-dark" style="margin-top:10px; margin-bottom:30px; width:300px; margin-left:300px;" id="solution" name="solution">Suggest Solution</button>
+				</form>
 			</div>
 		</div>
-       
-	</div>
+		
+        
+    </div>
+
 </body>
 </html>
