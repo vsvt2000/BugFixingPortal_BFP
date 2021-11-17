@@ -112,7 +112,7 @@ if(session.getAttribute("user")==null)
                	 }
                	 
                	if(solved.equals("N")){
-               		out.print("<div class='comments'> <div class='dialogbox'> <div class='body'> <span class='tip tip-left'></span> <br> <form action='IssuePage' method='post'> <input type='hidden' name='issueval' value='${param.issue}'/> <textarea id='addcomment' onkeyup='makeit()' placeholder='add comment....' name='addcomment' style='border:solid 1px orange;width:auto'; rows='1';></textarea> <br> <div> <button id='sub' disabled style='background:grey' type='submit' class='btn-primary offset-md-9 col-md-3' >Comment</button></div> </div> </form> </div> </div>");
+               		out.print("<div class='comments'> <div class='dialogbox'> <div class='body'> <span class='tip tip-left'></span> <br> <form action='IssuePage' method='post'> <input type='hidden' name='issueval' value='"+(String)request.getParameter("issue")+"'/> <textarea id='addcomment' onkeyup='makeit()' placeholder='add comment....' name='addcomment' style='border:solid 1px orange;width:auto'; rows='1';></textarea> <br> <div> <button id='sub' disabled style='background:grey' type='submit' class='btn-primary offset-md-9 col-md-3' >Comment</button></div> </div> </form> </div> </div>");
                	}
                	else{
                		out.print("<h4>Issue Solved by <i>"+solved+"</i></h4>");
