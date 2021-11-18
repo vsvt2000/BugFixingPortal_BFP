@@ -85,12 +85,38 @@ if(session.getAttribute("user")==null)
 						title = rs.getString("prob");
 						desc = rs.getString("description");		
 					}
+					
+					else
+					{
+						PreparedStatement ps = conn.prepareStatement("insert into interaction values (?,?,?,?,?)");
+						ps.setInt(1, ID);
+						ps.setInt(2, 1);
+						ps.setString(3, (String)session.getAttribute("user")+" (SP)");
+						ps.setString(4, desc);
+						ps.setString(5, "Y");
+						
+						int x = ps.executeUpdate();
+						ps = conn.prepareStatement("update issues set status=? where problem_id=?");
+						ps.setString(1, "closed");
+						ps.setInt(2, ID);
+						
+						x = ps.executeUpdate();
+						
+						if(x>0)
+							session.setAttribute("msg", "1");
+							
+						else
+							session.setAttribute("msg", "0");
+
+						response.sendRedirect("sp_dashboard.jsp");
+					}
 				}
 			}
 			
 			catch(Exception e)
 			{
 				out.println(e);
+				e.printStackTrace();
 			}
 		%>
 		<div class="d-flex justify-content-center">
@@ -103,9 +129,9 @@ if(session.getAttribute("user")==null)
 				</p>
 				
 				
-				<form action="sp_solution.jsp" method="post">
-				<label for="prob_id" style="margin-top:20px; font-size:20px; margin-left:10px;"><strong>Issue ID: </strong></label>
-				<input id="prob_id" name="prob_id" type="text" style="" value="<% out.print(ID); %>" readonly>
+				<form action="sp_solution.jsp" method="get">
+				<label for="issue" style="margin-top:20px; font-size:20px; margin-left:10px;"><strong>Issue ID: </strong></label>
+				<input id="issue" name="issue" type="text" style="" value="<% out.print(ID); %>" readonly>
 				<br>
 				<label for="solution" style="margin-top:20px; font-size:20px; margin-left:10px;"><strong>Solution: </strong></label>
 				<br>

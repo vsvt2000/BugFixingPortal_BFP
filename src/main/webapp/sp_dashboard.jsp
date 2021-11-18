@@ -66,6 +66,20 @@ if(session.getAttribute("user")==null)
 		out.println("<h1 style='font-size:25px'>"+(String)session.getAttribute("user")+"</h1>");
 		%>
         </div>
+        
+        <div style="text-align:center;">
+        	<%
+        	if(session.getAttribute("msg") == null)
+        	{}
+        	
+        	else if((String)session.getAttribute("msg") == "0")
+        		out.println("<p style=\"background-color:black; color:white; font-size:20px\">Some error in submitting the solution. Try again</p>");
+        	
+        	else
+        		out.println("<p style=\"background-color:black; color:white; font-size:20px\">Solution submitted successfully!</p>");
+        	session.removeAttribute("msg");
+        	%>
+        </div>
 
 		<div style="text-align: center; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-top:15px">
 			<p style="font-size:35px;">Issues to be Resolved</p>
