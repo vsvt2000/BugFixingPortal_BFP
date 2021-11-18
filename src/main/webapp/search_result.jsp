@@ -173,29 +173,32 @@ if(session.getAttribute("user")==null)
                                                     	String y1="";
                                                     	String y2="";
                                                     	int y3=0;
+                                                    	String y4="";
                                                     	 if (conn!=null){
                                                     		 if(search.length()>0){
-                                                   		  PreparedStatement ps= conn.prepareStatement("select problem_id ,prob,domain from issues where lower(prob) like '%"+search+"%' or lower(domain) like '%"+search+"%' or lower(description) like '%"+search+"%' ");
+                                                   		  PreparedStatement ps= conn.prepareStatement("select username,problem_id ,prob,domain from issues where lower(prob) like '%"+search+"%' or lower(domain) like '%"+search+"%' or lower(description) like '%"+search+"%' ");
 
                                                    		  ResultSet x = ps.executeQuery();
                                                    		  while(x.next()){
                                                    			  y1=x.getString("prob");
                                                    			  y2=x.getString("domain");
                                                    			  y3=x.getInt("problem_id");
+                                                   			  y4=x.getString("username");
                                                    			  
-                                                   			  out.print("<tr> <td> <div class='widget-26-job-emp-img'> </div> </td> <td> <div class='widget-26-job-title'> <a href='issue.jsp?issue="+y3+"'>"+y1+"</a> <p class='m-0'>"+y2+"<span class='text-muted time'>4 days ago</span> </p> </div> </td> <td> <div class='widget-26-job-info'> <p class='type m-0'>upvotes</p> <p class='text-muted m-0'>#99999</span></p> </div> </td> <td> <div class='widget-26-job-salary'>account level</div> </td> </tr>");
+                                                   			  out.print("<tr> <td> <div class='widget-26-job-emp-img'> </div> </td> <td> <div class='widget-26-job-title'> <a href='issue.jsp?issue="+y3+"'>"+y1+"</a> <p class='m-0'>"+y2+"<span class='text-muted time'>    4 days ago</span> </p> </div> </td> <td> by user: "+y4+"</td></tr>");
                                                    		  }
                                                     		 }
                                                     		 else{
-                                                    			 PreparedStatement ps= conn.prepareStatement("select problem_id, prob,domain from issues");
+                                                    			 PreparedStatement ps= conn.prepareStatement("select username,problem_id, prob,domain from issues");
 
                                                           		  ResultSet x = ps.executeQuery();
                                                           		  while(x.next()){
                                                           			  y1=x.getString("prob");
                                                           			  y2=x.getString("domain");
                                                           			  y3=x.getInt("problem_id");
+                                                          			  y4=x.getString("username");
                                                           			  
-                                                          			  out.print("<tr> <td> <div class='widget-26-job-emp-img'> </div> </td> <td> <div class='widget-26-job-title'> <a href='issue.jsp?issue="+y3+"'>"+y1+"</a> <p class='m-0'>"+y2+"<span class='text-muted time'>4 days ago</span> </p> </div> </td> <td> <div class='widget-26-job-info'> <p class='type m-0'>upvotes</p> <p class='text-muted m-0'>#99999</span></p> </div> </td> <td> <div class='widget-26-job-salary'>account level</div> </td> </tr>");
+                                                          			  out.print("<tr> <td> <div class='widget-26-job-emp-img'> </div> </td> <td> <div class='widget-26-job-title'> <a href='issue.jsp?issue="+y3+"'>"+y1+"</a> <p class='m-0'>"+y2+"<span class='text-muted time'>    4 days ago</span> </p> </div> </td><td> by user: "+y4+"</td> </tr>");
                                                           		  }
                                                     		 }
                                                     	 }
@@ -211,25 +214,7 @@ if(session.getAttribute("user")==null)
                                     </div>
                                 </div>
                             </div>
-                            <nav class="d-flex justify-content-center">
-                                <ul class="pagination pagination-base pagination-boxed pagination-square mb-0">
-                                    <li class="page-item">
-                                        <a class="page-link no-border" href="#">
-                                            <span aria-hidden="true">«</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link no-border" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link no-border" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link no-border" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link no-border" href="#">
-                                            <span aria-hidden="true">»</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            
                         </div>
                     </div>
                 </div>
