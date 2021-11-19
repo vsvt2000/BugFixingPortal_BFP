@@ -119,6 +119,7 @@ if(session.getAttribute("user")==null)
                         <th scope="col">Creator</th>
                         <th scope="col">Domain</th>
                         <th scope="col">Problem</th>
+                        <th scope="col">Interactions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -151,7 +152,7 @@ if(session.getAttribute("user")==null)
                     		  ResultSet x2 = ps2.executeQuery();
                     		  interactions=0;
                     		  while(x2.next()){interactions=interactions+1;}
-                			  out.print("<tr> <td>"+y2+"</td> <td>"+y4+"</td><td><a href=\"issue.jsp?issue="+y6+"\">"+y3+"</td></tr>");
+                			  out.print("<tr> <td>"+y2+"</td> <td>"+y4+"</td><td><a href=\"issue.jsp?issue="+y6+"\">"+y3+"</td><td>"+interactions+"</td></tr>");
                 		  }
                 		  	
                          
