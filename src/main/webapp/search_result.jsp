@@ -59,34 +59,7 @@ if(session.getAttribute("user")==null)
                                     <div class="col-12">
                                         <div class="row">
                                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                    <option>Problem Domain</option>
-                                                    <% 
-                                                    Connection conn=null;
-                                                    //session=request.getSession();
-                                                    try{
-                                                    	Class.forName("com.mysql.jdbc.Driver");
-                                                  	  	conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
-                                                  	  	//String uname =(String)session.getAttribute("user");
-                                                    	
-                                                    	String y1="";
-                                                    	
-                                                    	 if (conn!=null){
-                                                   		  PreparedStatement ps= conn.prepareStatement("select distinct domain from issues");
-
-                                                   		  //ps.setString(1,uname);
-                                                   		  ResultSet x = ps.executeQuery();
-                                                   		  while(x.next()){
-                                                   			  y1=x.getString("domain");
-                                                   			  out.print("<option>"+y1+"</option>");
-                                                   		  }
-                                                   			
-                                                    	 }
-                                                    }catch(Exception e){
-                                                    	out.print("<h1>null</h1>");
-                                                    }
-                                                    %>
-                                                </select>
+                                                
                                             </div>
                                             <div class="col-lg-8 col-md-6 col-sm-12 p-0">
                                                 <input type="text" placeholder="Search..." class="form-control"
@@ -122,7 +95,8 @@ if(session.getAttribute("user")==null)
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="records">
-                                                    <% try{
+                                                    <% Connection conn=null;try{
+                                                    	
                                                     	Class.forName("com.mysql.jdbc.Driver");
                                                   	  	conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bugfixingportal","root","1234");
                                                   	  	//String uname =(String)session.getAttribute("user");
@@ -147,14 +121,7 @@ if(session.getAttribute("user")==null)
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="result-actions">
-                                                        <div class="result-sorting">
-                                                            <span>Sort By:</span>
-                                                            <select class="form-control border-0" id="exampleOption">
-                                                                <option value="1">Relevance</option>
-                                                                <option value="2">Names (A-Z)</option>
-                                                                <option value="3">Names (Z-A)</option>
-                                                            </select>
-                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

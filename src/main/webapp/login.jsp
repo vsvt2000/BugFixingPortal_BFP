@@ -36,15 +36,11 @@
   
           <label for="psw">Password</label>
           <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-  
+  			<br>
+  			<br>
           <button type="submit" >Login</button>
-          <p style="text-align: center;">or</p>
-          <button type="submit" style="background-color:rgb(15, 14, 14);">Login with GitHub</button>
-          <button type="submit" style="background-color:rgb(56, 40, 128);">Login with Linkedin</button>
-      
-          <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me</input>
-          </label>
+          
+          
           <br>
           <br>
           <a href="signup.jsp" style="color:rgb(57, 57, 107);text-align:center;" ><span > <b>Don't have an account ?</b> </span></a>

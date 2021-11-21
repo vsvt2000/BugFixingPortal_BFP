@@ -85,7 +85,14 @@ public class myissues extends HttpServlet {
     				  y5=x.getString("status");
     				  y6=x.getInt("problem_id");
     				  
-    				  
+    				  PreparedStatement ps2= conn.prepareStatement("SELECT * FROM interaction where problem_id=?");
+					  ps2.setInt(1,y6);
+            		  
+            		  ResultSet x2 = ps2.executeQuery();
+            		  int interactions=0;
+            		  while(x2.next()){interactions=interactions+1;}
+        			  //out.print("<tr> <td>"+y2+"</td> <td>"+y4+"</td><td><a href=\"issue.jsp?issue="+y6+"\">"+y3+"</td><td>"+interactions+"</td></tr>");
+        		  
     			
     			  
     			  
@@ -96,7 +103,7 @@ public class myissues extends HttpServlet {
     				 		+ "                    <tr>\r\n"
     				 		+ "                        <td>"+  y2  +"</td>\r\n"
     				 		+ "                        <td><a href=\"issue.jsp?issue="+y6+"\">"+ y1 +"</a></td>\r\n"
-    				 		+ "                        <td>10</td>\r\n"
+    				 		+ "                        <td>"+interactions+"</td>\r\n"
     				 		+ "                        <td>"+ y5 +"</td>\r\n");
     				 if (y5.equals("open")) {
     				 		out.print( "<td><form action='myissues' method=post><input type='hidden' name='prob' value="+y6+"><button type='submit' id='myBtn' onclick='at1()' type=\"button\" class=\"btn btn-primary\" style=\"height: 75%;\">Close issue</button></form></td>\r\n"
@@ -107,11 +114,11 @@ public class myissues extends HttpServlet {
     				 else{
     					 out.print("<td><p><i>Issue Closed</i></p></td></tr>");
     					 }}
-    				 }
+    				 
     			  
     		  
     		 
-    	  }catch(Exception e){
+    		  }}catch(Exception e){
     		  out.print("Something is wrong.."+e);
     	  }
 	}
