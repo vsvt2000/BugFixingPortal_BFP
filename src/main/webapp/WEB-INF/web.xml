@@ -98,4 +98,8 @@
         <servlet-name>myanswers</servlet-name>
         <url-pattern>/myanswers</url-pattern>
     </servlet-mapping>
+    <error-page>
+    	<error-code>404</error-code>
+        <location>/error_page.html</location>
+    </error-page>
 </web-app>
